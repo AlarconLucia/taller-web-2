@@ -5,8 +5,6 @@ import { RouterModule } from '@angular/router';
   selector: 'app-form-inicio-sesion',
   imports: [RouterModule],
   templateUrl: './form-inicio-sesion.component.html',
-  styleUrl: './form-inicio-sesion.component.css'
+  styleUrl: './form-inicio-sesion.component.css',
 })
-export class FormInicioSesionComponent {
-
-}
+export class FormInicioSesionComponent {}
