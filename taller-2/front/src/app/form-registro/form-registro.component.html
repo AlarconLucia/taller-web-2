@@ -61,8 +61,17 @@
   registro().get('password')?.touched){
   <span class="text-danger"
     >La contraseña debe tener mínimo cinco carácteres</span
+  > 
+}@if(registro().get('password')?.errors?.['sinNumero'] &&
+  registro().get('password')?.touched){
+  <span class="text-danger"
+    >La contraseña debe contener al menos un número</span
   >
-  }
+}@if(registro().get('password')?.errors?.['sinMayusculaOMinuscula'] &&
+  registro().get('password')?.touched){
+  <span class="text-danger"
+    >La contraseña debe contener al menos una letra mayúscula y una minúscula</span
+  >}
   <br /><br />
 
   <input
