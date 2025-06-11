@@ -1,0 +1,21 @@
+<h1>¡Hola!</h1>
+<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+  <label for="user">Email</label>
+  <input type="email" name="user" id="user" ngModel required /><br /><br />
+
+  <label for="password">Contraseña</label>
+  <input
+    type="password"
+    name="password"
+    id="password"
+    ngModel
+    required
+  /><br /><br />
+
+  <input type="submit" value="Iniciar sesión" />
+</form>
+
+<br /><br />
+<a routerLink="/registro" routerLinkActive="router-link-active"
+  >Todavía no tengo cuenta</a
+>
