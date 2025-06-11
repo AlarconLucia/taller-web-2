@@ -1,8 +1,10 @@
 import { Component, signal } from '@angular/core';
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
@@ -34,8 +36,19 @@ export class FormRegistroComponent {
       }),
       password: new FormControl('', {
         nonNullable: true,
-        validators: [Validators.required, Validators.minLength(5)],
+        validators: [Validators.required, Validators.minLength(5), contieneNumero, contieneMayusculaYMinuscula],
       }),
     })
   );
+}
+
+export function contieneNumero(control: AbstractControl): ValidationErrors | null {
+  const tieneNumero = /\d/.test(control.value);
+  return tieneNumero ? null : { sinNumero: true };
+}
+
+export function contieneMayusculaYMinuscula(control: AbstractControl): ValidationErrors | null {
+  const tieneMayuscula = /[A-Z]/.test(control.value);
+  const tieneMinuscula = /[a-z]/.test(control.value);
+  return tieneMayuscula && tieneMinuscula ? null : { sinMayusculaOMinuscula: true };
 }
