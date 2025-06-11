@@ -10,7 +10,6 @@ export class ProductoService {
     { id: 2, nombre: 'Pantalón', color: 'Azul', precio: 150 },
     { id: 3, nombre: 'Zapato', color: 'Negro', precio: 200 },
     { id: 4, nombre: 'Gorra', color: 'Rojo', precio: 50 },
-    // Agregá más si querés
   ];
 
   private productosFiltrados = signal<Producto[]>(this.productos);
