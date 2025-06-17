@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -7,26 +7,28 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { UsuarioService } from '../api/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-form-registro',
-  imports: [RouterOutlet, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './form-registro.component.html',
   styleUrl: './form-registro.component.css',
 })
 export class FormRegistroComponent {
+  private usuarioService = inject(UsuarioService);
+
   registro = signal<FormGroup>(
     new FormGroup({
-      name: new FormControl('', {
+      nombre: new FormControl('', {
         nonNullable: true,
         validators: [Validators.required, Validators.minLength(3)],
       }),
-      lastName: new FormControl('', {
+      apellido: new FormControl('', {
         nonNullable: true,
         validators: [Validators.required, Validators.minLength(3)],
       }),
-      address: new FormControl('', {
+      direccion: new FormControl('', {
         nonNullable: true,
         validators: [Validators.required, Validators.minLength(5)],
       }),
@@ -34,12 +36,29 @@ export class FormRegistroComponent {
         nonNullable: true,
         validators: [Validators.required, Validators.email],
       }),
-      password: new FormControl('', {
+      passw: new FormControl('', {
         nonNullable: true,
         validators: [Validators.required, Validators.minLength(5), contieneNumero, contieneMayusculaYMinuscula],
       }),
     })
   );
+
+  onSubmit() {
+    const form = this.registro();
+    if (form.valid) {
+      const datos = form.value;
+      this.usuarioService.registrarUsuario(datos).subscribe({
+        next: (res) => {
+          console.log('Usuario registrado:', res);
+        },
+        error: (err) => {
+          console.error('Error en registro:', err);
+        }
+      });
+    } else {
+      form.markAllAsTouched();
+    }
+  }
 }
 
 export function contieneNumero(control: AbstractControl): ValidationErrors | null {

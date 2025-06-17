@@ -1,35 +1,35 @@
 <h1>Registro</h1>
 
-<form [formGroup]="registro()">
-  <label for="name">Nombre</label>
-  <input type="text" name="name" id="name" formControlName="name" />
-  @if(registro().get('name')?.hasError('required') &&
-  registro().get('name')?.touched){
+<form [formGroup]="registro()" (ngSubmit)="onSubmit()">
+  <label for="nombre">Nombre</label>
+  <input type="text" name="nombre" id="nombre" formControlName="nombre" />
+  @if(registro().get('nombre')?.hasError('required') &&
+  registro().get('nombre')?.touched){
   <span class="text-danger">Este campo es requerido</span>
-  } @if(registro().get('name')?.hasError('minlength') &&
-  registro().get('name')?.touched){
+  } @if(registro().get('nombre')?.hasError('minlength') &&
+  registro().get('nombre')?.touched){
   <span class="text-danger">El nombre debe tener mínimo tres carácteres</span>
   }
   <br /><br />
 
-  <label for="lastName">Apellido</label>
-  <input type="text" name="lastName" id="lastName" formControlName="lastName" />
-  @if(registro().get('lastName')?.hasError('required') &&
-  registro().get('lastName')?.touched){
+  <label for="apellido">Apellido</label>
+  <input type="text" name="apellido" id="apellido" formControlName="apellido" />
+  @if(registro().get('apellido')?.hasError('required') &&
+  registro().get('apellido')?.touched){
   <span class="text-danger">Este campo es requerido</span>
-  } @if(registro().get('lastName')?.hasError('minlength') &&
-  registro().get('lastName')?.touched){
+  } @if(registro().get('apellido')?.hasError('minlength') &&
+  registro().get('apellido')?.touched){
   <span class="text-danger">El apellido debe tener mínimo tres carácteres</span>
   }
   <br /><br />
 
-  <label for="address">Dirección</label>
-  <input type="text" name="address" id="address" formControlName="address" />
-  @if(registro().get('address')?.hasError('required') &&
-  registro().get('address')?.touched){
+  <label for="direccion">Dirección</label>
+  <input type="text" name="direccion" id="direccion" formControlName="direccion" />
+  @if(registro().get('direccion')?.hasError('required') &&
+  registro().get('direccion')?.touched){
   <span class="text-danger">Este campo es requerido</span>
-  } @if(registro().get('address')?.hasError('minlength') &&
-  registro().get('address')?.touched){
+  } @if(registro().get('direccion')?.hasError('minlength') &&
+  registro().get('direccion')?.touched){
   <span class="text-danger"
     >La dirección debe tener mínimo cinco carácteres</span
   >
@@ -47,29 +47,29 @@
   }
   <br /><br />
 
-  <label for="password">Contraseña</label>
+  <label for="passw">Contraseña</label>
   <input
-    type="password"
-    name="password"
-    id="password"
-    formControlName="password"
+    type="passw"
+    name="passw"
+    id="passw"
+    formControlName="passw"
   />
-  @if(registro().get('password')?.hasError('required') &&
-  registro().get('password')?.touched){
+  @if(registro().get('passw')?.hasError('required') &&
+  registro().get('passw')?.touched){
   <span class="text-danger">Este campo es requerido</span>
   <br><br>
-  } @if(registro().get('password')?.hasError('minlength') &&
-  registro().get('password')?.touched){
+  } @if(registro().get('passw')?.hasError('minlength') &&
+  registro().get('passw')?.touched){
   <span class="text-danger"
     >La contraseña debe tener mínimo cinco carácteres</span
   > <br><br>
-}@if(registro().get('password')?.errors?.['sinNumero'] &&
-  registro().get('password')?.touched){
+}@if(registro().get('passw')?.errors?.['sinNumero'] &&
+  registro().get('passw')?.touched){
   <span class="text-danger"
     >La contraseña debe contener al menos un número</span
   ><br><br>
-}@if(registro().get('password')?.errors?.['sinMayusculaOMinuscula'] &&
-  registro().get('password')?.touched){
+}@if(registro().get('passw')?.errors?.['sinMayusculaOMinuscula'] &&
+  registro().get('passw')?.touched){
   <span class="text-danger"
     >La contraseña debe contener al menos una letra mayúscula y una minúscula</span
   >}
