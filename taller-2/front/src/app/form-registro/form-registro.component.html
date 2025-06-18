@@ -30,7 +30,9 @@
   <span class="text-danger">Este campo es requerido</span>
   } @if(registro().get('direccion')?.hasError('minlength') &&
   registro().get('direccion')?.touched){
-  <span class="text-danger">La dirección debe tener mínimo cinco carácteres</span>
+  <span class="text-danger"
+    >La dirección debe tener mínimo cinco carácteres</span
+  >
   }
   <br /><br />
 
@@ -46,26 +48,48 @@
   <br /><br />
 
   <label for="passw">Contraseña</label>
-  <input type="password" name="passw" id="passw" formControlName="passw" />
+  <input
+    type="password"
+    name="passw"
+    id="passw"
+    formControlName="passw"
+  />
   @if(registro().get('passw')?.hasError('required') &&
   registro().get('passw')?.touched){
   <span class="text-danger">Este campo es requerido</span>
   <br><br>
   } @if(registro().get('passw')?.hasError('minlength') &&
   registro().get('passw')?.touched){
-  <span class="text-danger">La contraseña debe tener mínimo cinco carácteres</span> <br><br>
-  }@if(registro().get('passw')?.errors?.['sinNumero'] &&
+  <span class="text-danger"
+    >La contraseña debe tener mínimo cinco carácteres</span
+  > <br><br>
+}@if(registro().get('passw')?.errors?.['sinNumero'] &&
   registro().get('passw')?.touched){
-  <span class="text-danger">La contraseña debe contener al menos un número</span><br><br>
-  }@if(registro().get('passw')?.errors?.['sinMayusculaOMinuscula'] &&
+  <span class="text-danger"
+    >La contraseña debe contener al menos un número</span
+  ><br><br>
+}@if(registro().get('passw')?.errors?.['sinMayusculaOMinuscula'] &&
   registro().get('passw')?.touched){
-  <span class="text-danger">La contraseña debe contener al menos una letra mayúscula y una minúscula</span>}
+  <span class="text-danger"
+    >La contraseña debe contener al menos una letra mayúscula y una minúscula</span
+  >}
   <br /><br />
 
-  <input type="submit" name="save" id="save" value="Guardar" [disabled]="registro().invalid" />
+  <input
+    type="submit"
+    name="save"
+    id="save"
+    value="Guardar"
+    [disabled]="registro().invalid"
+  />
 
   <div *ngIf="mensajeError" class="alert alert-danger">
-    {{ mensajeError }}
-  </div>
+  {{ mensajeError }}
+</div>
+
+<div *ngIf="mensajeExito" class="alert alert-success">
+  {{ mensajeExito }} <br><br>
+  <a routerLink="/inicio-sesion" routerLinkActive="router-link-active">Iniciar sesión</a>
+</div>
 
 </form>

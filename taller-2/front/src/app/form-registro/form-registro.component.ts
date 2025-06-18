@@ -9,16 +9,19 @@ import {
 } from '@angular/forms';
 import { UsuarioService } from '../api/services/usuario/usuario.service';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-form-registro',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './form-registro.component.html',
   styleUrl: './form-registro.component.css',
 })
 export class FormRegistroComponent {
   private usuarioService = inject(UsuarioService);
   mensajeError: string | null = null;
+  mensajeExito: string |null = null;
+  private router = inject(Router);
 
   registro = signal<FormGroup>(
     new FormGroup({
@@ -52,6 +55,8 @@ export class FormRegistroComponent {
       this.usuarioService.registrarUsuario(datos).subscribe({
         next: (res) => {
           console.log('Usuario registrado:', res);
+          this.mensajeExito = '¡Registro exitoso!'
+          this.mensajeError = null;
         },
         error: (err) => {
           console.error('Error en registro:', err);
