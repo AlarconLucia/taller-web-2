@@ -1,8 +1,8 @@
 export interface Usuario{
     id : number,
-    name : string,
-    lastName : string,
-    address : string,
+    nombre : string,
+    apellido : string,
+    direccion : string,
     email : string,
-    password : string
+    passw : string
 }
