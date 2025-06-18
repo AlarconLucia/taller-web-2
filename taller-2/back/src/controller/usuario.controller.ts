@@ -13,11 +13,11 @@ export class UsuarioController {
     public registrarUsuario = async (_req: Request, res: Response) => {
 
         try {
-            const empleado = await usuarioService.crearEmpleado(_req.body)
+            const empleado = await usuarioService.crearUsuario(_req.body)
             res.json(200).json(empleado)
         } catch (error) {
             console.log(error);
-            res.status(400).json({ message: 'Error al crear el usuario, mandá bien los datos', error })
+            res.status(400).json({ message: 'El email ya está siendo usado por otro usuario', error })
         }
     }
 }

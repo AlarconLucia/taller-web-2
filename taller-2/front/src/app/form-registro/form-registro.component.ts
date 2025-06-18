@@ -8,15 +8,17 @@ import {
   Validators,
 } from '@angular/forms';
 import { UsuarioService } from '../api/services/usuario/usuario.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-form-registro',
-  imports: [ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './form-registro.component.html',
   styleUrl: './form-registro.component.css',
 })
 export class FormRegistroComponent {
   private usuarioService = inject(UsuarioService);
+  mensajeError: string | null = null;
 
   registro = signal<FormGroup>(
     new FormGroup({
@@ -53,6 +55,7 @@ export class FormRegistroComponent {
         },
         error: (err) => {
           console.error('Error en registro:', err);
+          this.mensajeError = err.error?.message || 'Error al registrar el usuario';
         }
       });
     } else {
