@@ -1,14 +1,9 @@
-import express from 'express';
+import { Server } from './server/server';
 import { AppRoutes } from './routes/routes.routes';
 
-const cors = require('cors');
-const app = express();
-const PORT = 3000;
-
-app.use(cors());
-app.use(express.json());
-app.use(AppRoutes.routes);
-
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+const server = new Server({
+  port: 3000,
+  routes: AppRoutes.routes,
 });
+
+server.start();

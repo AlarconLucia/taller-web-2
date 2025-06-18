@@ -5,3 +5,6 @@ export const usuarioRouter = Router();
 const usuarioController = new UsuarioController();
 
 usuarioRouter.post('/registro', usuarioController.registrarUsuario.bind(usuarioController));
+usuarioRouter.get('/', (req, res) => {
+    res.redirect('/inicio-sesion');
+});
