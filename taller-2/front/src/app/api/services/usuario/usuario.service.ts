@@ -43,4 +43,9 @@ export class UsuarioService {
                 })
             );
     }
+
+    cerrarSesion() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('usuario');
+    }
 }

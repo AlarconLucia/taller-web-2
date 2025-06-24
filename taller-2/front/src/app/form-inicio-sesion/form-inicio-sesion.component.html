@@ -1,25 +1,56 @@
-<h1>¡Hola!</h1>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow p-4 bg-light">
+        <h1 class="h2 text-center mb-4">¡Hola!</h1>
 
-<form [formGroup]="login()" (ngSubmit)="onSubmit()">
-  <label for="user">Email</label>
-  <input type="email" name="email" id="email" formControlName="email" />
-  @if(login().get('email')?.hasError('required') &&
-  login().get('email')?.touched){
-  <span class="text-danger">Este campo es requerido</span>
-  } @if(login().get('email')?.hasError('email') &&
-  login().get('email')?.touched){
-  <span class="text-danger">El formato no es el correcto</span>
-  }<br /><br />
+        <form [formGroup]="login()" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              formControlName="email"
+              placeholder="ejemplo@email.com"
+            />
+            @if(login().get('email')?.hasError('required') && login().get('email')?.touched) {
+              <span class="text-danger">Este campo es requerido</span>
+            }
+            @if(login().get('email')?.hasError('email') && login().get('email')?.touched) {
+              <span class="text-danger">El formato no es el correcto</span>
+            }
+          </div>
 
-  <label for="passw">Contraseña</label>
-  <input type="password" name="passwd" id="passw" formControlName="passw" />
-  @if(login().get('passw')?.hasError('required') &&
-  login().get('passw')?.touched){
-  <span class="text-danger">Este campo es requerido</span>}
-  <br /><br />
+          <div class="mb-3">
+            <label for="passw" class="form-label">Contraseña</label>
+            <input
+              type="password"
+              class="form-control"
+              id="passw"
+              formControlName="passw"
+              placeholder="Tu contraseña"
+            />
+            @if(login().get('passw')?.hasError('required') && login().get('passw')?.touched) {
+              <span class="text-danger">Este campo es requerido</span>
+            }
+          </div>
 
-  <input type="submit" value="Iniciar sesión" />
-</form>
+          <div class="d-grid gap-2">
+            <input type="submit" value="Iniciar sesión" class="btn btn-success" />
+          </div>
+        </form>
 
-<br /><br />
-<a routerLink="/registro" routerLinkActive="router-link-active">Todavía no tengo cuenta</a>
+        <div class="text-center mt-4">
+          <a
+            routerLink="/registro"
+            routerLinkActive="router-link-active"
+            class="text-success"
+          >
+            Todavía no tengo cuenta
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
