@@ -2,8 +2,6 @@ import { Request } from "express";
 import { Response } from "express";
 import { UsuarioRepository } from "../repository/usuario.repository";
 import { UsuarioService } from "../services/usuario.service";
-import { prisma } from "../prisma";
-import { usuario } from '../generated/prisma/index';
 import jwt from 'jsonwebtoken';
 
 const usuarioRepository = new UsuarioRepository()

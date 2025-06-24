@@ -8,4 +8,4 @@ usuarioRouter.post('/registro', usuarioController.registrarUsuario.bind(usuarioC
 usuarioRouter.get('/', (req, res) => {
     res.redirect('/inicio-sesion');
 });
-usuarioRouter.post('/login', usuarioController.login.bind(usuarioController))
+usuarioRouter.post('/login', usuarioController.login.bind(usuarioController));
