@@ -1,6 +1,8 @@
 import { UsuarioRepository } from '../repository/usuario.repository';
+import { Usuario } from '../../../front/src/app/modules/usuarios/interface/usuario.interface';
 
 export class UsuarioService {
+    
     constructor(private usuarioRepository: UsuarioRepository) { }
 
     async crearUsuario(usuario: {
@@ -32,6 +34,10 @@ export class UsuarioService {
         }
 
         return this.usuarioRepository.crearUsuario(usuario);
+    }
+
+    buscarUsuario(email: string, password: string) {
+        return this.usuarioRepository.buscarUsuario(email, password)
     }
 
     private async emailEnUso(email: string): Promise<boolean> {
