@@ -19,7 +19,7 @@ export class FormInicioSesionComponent {
     if (loginExitoso) {
       this.router.navigate(['/inicio']);
     } else {
-      alert('Uusario o contraseña incorrectos');
+      alert('Usuario o contraseña incorrectos');
     }
   }
 }
