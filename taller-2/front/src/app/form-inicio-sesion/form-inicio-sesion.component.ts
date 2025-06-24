@@ -1,25 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UsuarioService } from '../api/services/usuario/usuario.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-form-inicio-sesion',
   standalone: true,
-  imports: [RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   templateUrl: './form-inicio-sesion.component.html',
   styleUrl: './form-inicio-sesion.component.css',
 })
 export class FormInicioSesionComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
+  private usuarioService = inject(UsuarioService);
+  mensajeError: string | null = null;
+
+  login = signal<FormGroup>(
+    new FormGroup({
+      email: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.email],
+      }),
+      passw: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+    }));
 
   onSubmit() {
-    const loginExitoso = true;
-
-    if (loginExitoso) {
-      this.router.navigate(['/inicio']);
-    } else {
-      alert('Uusario o contraseña incorrectos');
+    const form = this.login();
+    if (form.valid) {
+      const datos = form.value;
+      this.usuarioService.iniciarSesion(datos.email, datos.passw).subscribe({
+        next: usuario => {
+          const loginExitoso = true;
+          console.log('Login exitoso', usuario);
+          this.router.navigate(['/inicio']);
+        },
+        error: err => {
+          console.error('Error de login', err);
+          this.mensajeError = 'Email y/o contraseña incorrectos'
+        }
+      });
     }
   }
 }

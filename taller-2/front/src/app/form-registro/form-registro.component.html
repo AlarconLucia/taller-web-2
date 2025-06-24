@@ -1,95 +1,134 @@
-<h1>Registro</h1>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow p-4 bg-light">
+        <h1 class="h2 text-center mb-4">Registro</h1>
 
-<form [formGroup]="registro()" (ngSubmit)="onSubmit()">
-  <label for="nombre">Nombre</label>
-  <input type="text" name="nombre" id="nombre" formControlName="nombre" />
-  @if(registro().get('nombre')?.hasError('required') &&
-  registro().get('nombre')?.touched){
-  <span class="text-danger">Este campo es requerido</span>
-  } @if(registro().get('nombre')?.hasError('minlength') &&
-  registro().get('nombre')?.touched){
-  <span class="text-danger">El nombre debe tener mínimo tres carácteres</span>
-  }
-  <br /><br />
+        <form [formGroup]="registro()" (ngSubmit)="onSubmit()">
+          <!-- Nombre -->
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              formControlName="nombre"
+              placeholder="Tu nombre"
+            />
+            @if(registro().get('nombre')?.hasError('required') && registro().get('nombre')?.touched) {
+              <p class="text-danger">Este campo es requerido</p>
+            }
+            @if(registro().get('nombre')?.hasError('minlength') && registro().get('nombre')?.touched) {
+              <p class="text-danger">El nombre debe tener mínimo tres carácteres</p>
+            }
+          </div>
 
-  <label for="apellido">Apellido</label>
-  <input type="text" name="apellido" id="apellido" formControlName="apellido" />
-  @if(registro().get('apellido')?.hasError('required') &&
-  registro().get('apellido')?.touched){
-  <span class="text-danger">Este campo es requerido</span>
-  } @if(registro().get('apellido')?.hasError('minlength') &&
-  registro().get('apellido')?.touched){
-  <span class="text-danger">El apellido debe tener mínimo tres carácteres</span>
-  }
-  <br /><br />
+          <!-- Apellido -->
+          <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input
+              type="text"
+              class="form-control"
+              id="apellido"
+              formControlName="apellido"
+              placeholder="Tu apellido"
+            />
+            @if(registro().get('apellido')?.hasError('required') && registro().get('apellido')?.touched) {
+              <p class="text-danger">Este campo es requerido</p>
+            }
+            @if(registro().get('apellido')?.hasError('minlength') && registro().get('apellido')?.touched) {
+              <p class="text-danger">El apellido debe tener mínimo tres carácteres</p>
+            }
+          </div>
 
-  <label for="direccion">Dirección</label>
-  <input type="text" name="direccion" id="direccion" formControlName="direccion" />
-  @if(registro().get('direccion')?.hasError('required') &&
-  registro().get('direccion')?.touched){
-  <span class="text-danger">Este campo es requerido</span>
-  } @if(registro().get('direccion')?.hasError('minlength') &&
-  registro().get('direccion')?.touched){
-  <span class="text-danger"
-    >La dirección debe tener mínimo cinco carácteres</span
-  >
-  }
-  <br /><br />
+          <!-- Dirección -->
+          <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección</label>
+            <input
+              type="text"
+              class="form-control"
+              id="direccion"
+              formControlName="direccion"
+              placeholder="Tu dirección"
+            />
+            @if(registro().get('direccion')?.hasError('required') && registro().get('direccion')?.touched) {
+              <p class="text-danger">Este campo es requerido</p>
+            }
+            @if(registro().get('direccion')?.hasError('minlength') && registro().get('direccion')?.touched) {
+              <p class="text-danger">La dirección debe tener mínimo cinco carácteres</p>
+            }
+          </div>
 
-  <label for="email">Email</label>
-  <input type="email" name="email" id="email" formControlName="email" />
-  @if(registro().get('email')?.hasError('required') &&
-  registro().get('email')?.touched){
-  <span class="text-danger">Este campo es requerido</span>
-  } @if(registro().get('email')?.hasError('email') &&
-  registro().get('email')?.touched){
-  <span class="text-danger">El formato no es el correcto</span>
-  }
-  <br /><br />
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              formControlName="email"
+              placeholder="ejemplo@email.com"
+            />
+            @if(registro().get('email')?.hasError('required') && registro().get('email')?.touched) {
+              <p class="text-danger">Este campo es requerido</p>
+            }
+            @if(registro().get('email')?.hasError('email') && registro().get('email')?.touched) {
+              <p class="text-danger">El formato no es el correcto</p>
+            }
+          </div>
 
-  <label for="passw">Contraseña</label>
-  <input
-    type="password"
-    name="passw"
-    id="passw"
-    formControlName="passw"
-  />
-  @if(registro().get('passw')?.hasError('required') &&
-  registro().get('passw')?.touched){
-  <span class="text-danger">Este campo es requerido</span>
-  <br><br>
-  } @if(registro().get('passw')?.hasError('minlength') &&
-  registro().get('passw')?.touched){
-  <span class="text-danger"
-    >La contraseña debe tener mínimo cinco carácteres</span
-  > <br><br>
-}@if(registro().get('passw')?.errors?.['sinNumero'] &&
-  registro().get('passw')?.touched){
-  <span class="text-danger"
-    >La contraseña debe contener al menos un número</span
-  ><br><br>
-}@if(registro().get('passw')?.errors?.['sinMayusculaOMinuscula'] &&
-  registro().get('passw')?.touched){
-  <span class="text-danger"
-    >La contraseña debe contener al menos una letra mayúscula y una minúscula</span
-  >}
-  <br /><br />
+          <!-- Contraseña -->
+          <div class="mb-3">
+            <label for="passw" class="form-label">Contraseña</label>
+            <input
+              type="password"
+              class="form-control"
+              id="passw"
+              formControlName="passw"
+              placeholder="Tu contraseña"
+            />
+            @if(registro().get('passw')?.hasError('required') && registro().get('passw')?.touched) {
+              <p class="text-danger">Este campo es requerido</p>
+            }
+            @if(registro().get('passw')?.hasError('minlength') && registro().get('passw')?.touched) {
+              <p class="text-danger">La contraseña debe tener mínimo cinco carácteres</p>
+            }
+            @if(registro().get('passw')?.errors?.['sinNumero'] && registro().get('passw')?.touched) {
+              <p class="text-danger">La contraseña debe contener al menos un número</p>
+            }
+            @if(registro().get('passw')?.errors?.['sinMayusculaOMinuscula'] && registro().get('passw')?.touched) {
+              <p class="text-danger">La contraseña debe contener al menos una letra mayúscula y una minúscula</p>
+            }
+          </div>
 
-  <input
-    type="submit"
-    name="save"
-    id="save"
-    value="Guardar"
-    [disabled]="registro().invalid"
-  />
+          <!-- Botón Guardar -->
+          <div class="d-grid gap-2 mb-3">
+            <input
+              type="submit"
+              id="save"
+              value="Guardar"
+              class="btn btn-success"
+              [disabled]="registro().invalid"
+            />
+          </div>
 
-  <div *ngIf="mensajeError" class="alert alert-danger">
-  {{ mensajeError }}
+          <!-- Mensajes -->
+          <div *ngIf="mensajeError" class="alert alert-danger">
+            {{ mensajeError }}
+          </div>
+
+          <div *ngIf="mensajeExito" class="alert alert-success">
+            {{ mensajeExito }} <br /><br />
+            <a
+              routerLink="/inicio-sesion"
+              routerLinkActive="router-link-active"
+              class="text-success"
+            >
+              Iniciar sesión
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div *ngIf="mensajeExito" class="alert alert-success">
-  {{ mensajeExito }} <br><br>
-  <a routerLink="/inicio-sesion" routerLinkActive="router-link-active">Iniciar sesión</a>
-</div>
-
-</form>

@@ -13,6 +13,7 @@ import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-form-registro',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './form-registro.component.html',
   styleUrl: './form-registro.component.css',

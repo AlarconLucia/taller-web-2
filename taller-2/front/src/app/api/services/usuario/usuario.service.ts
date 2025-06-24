@@ -32,4 +32,20 @@ export class UsuarioService {
             }),
         )
     }
+
+    iniciarSesion(email: string, password: string) {
+        return this.http.post<any>(`${environment.api_url}/usuario/login`, { email, password })
+            .pipe(
+                map(response => {
+                    localStorage.setItem('token', response.token);
+                    localStorage.setItem('usuario', JSON.stringify(response.usuario));
+                    return response.usuario;
+                })
+            );
+    }
+
+    cerrarSesion() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('usuario');
+    }
 }
