@@ -30,9 +30,10 @@ export class UsuarioController {
     public login = async (_req: Request, res: Response) => {
         const { email, password } = _req.body;
         try {
-            const usuario = await usuarioService.buscarUsuario(email, password );
+            const usuario = await usuarioService.buscarUsuario(email, password);
             if (!usuario) {
-                return res.status(401).json({ mensaje: 'Email y/o contraseña incorrectos' });
+                res.status(401).json({ mensaje: 'Email y/o contraseña incorrectos' });
+                return;
             }
 
             const token = this.generarToken(usuario);
@@ -40,17 +41,17 @@ export class UsuarioController {
             res.json({
                 token,
                 usuario: {
-                    id: usuario.id,
-                    nombre: usuario.nombre,
-                    email: usuario.email,
+                    id: usuario?.id,
+                    nombre: usuario?.nombre,
+                    email: usuario?.email,
                 }
             });
         } catch (error) {
             res.status(500).json({ mensaje: 'Error interno del servidor' });
         }
     }
-    
-    private  generarToken(usuario: { id: number; email: string | null; nombre?: string | null }): string {
+
+    private generarToken(usuario: { id: number; email: string | null; nombre?: string | null }): string {
         return jwt.sign(
             {
                 id: usuario.id,
@@ -63,6 +64,6 @@ export class UsuarioController {
             }
         );
     }
-    
+
 }
 

@@ -3,12 +3,11 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuarioService } from '../api/services/usuario/usuario.service';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-inicio-sesion',
   standalone: true,
-  imports: [RouterModule, FormsModule, ReactiveFormsModule, HttpClientModule],
+  imports: [RouterModule, FormsModule, ReactiveFormsModule],
   templateUrl: './form-inicio-sesion.component.html',
   styleUrl: './form-inicio-sesion.component.css',
 })
