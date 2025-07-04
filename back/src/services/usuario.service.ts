@@ -1,8 +1,6 @@
 import { UsuarioRepository } from '../repository/usuario.repository';
-import { Usuario } from '../../../front/src/app/modules/usuarios/interface/usuario.interface';
 
 export class UsuarioService {
-    
     constructor(private usuarioRepository: UsuarioRepository) { }
 
     async crearUsuario(usuario: {
@@ -37,7 +35,7 @@ export class UsuarioService {
     }
 
     buscarUsuario(email: string, password: string) {
-        return this.usuarioRepository.buscarUsuario(email, password)
+        return this.usuarioRepository.verificarEmailYPassword(email, password)
     }
 
     private async emailEnUso(email: string): Promise<boolean> {
@@ -47,6 +45,12 @@ export class UsuarioService {
             return true
         } else {
             return false
+        }
+    }
+
+    async cambiarPassword(email: string, passwNueva: string) {
+        if(await this.usuarioRepository.emailYaUsado(email)){
+            return this.usuarioRepository.cambiarPassword(email, passwNueva)
         }
     }
 

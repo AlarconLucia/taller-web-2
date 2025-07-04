@@ -7,55 +7,44 @@
         <form [formGroup]="login()" (ngSubmit)="onSubmit()">
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              formControlName="email"
-              placeholder="ejemplo@email.com"
-            />
+            <input type="email" class="form-control" id="email" formControlName="email"
+              placeholder="ejemplo@email.com" />
             @if(login().get('email')?.hasError('required') && login().get('email')?.touched) {
-              <span class="text-danger">Este campo es requerido</span>
+            <span class="text-danger">Este campo es requerido</span>
             }
             @if(login().get('email')?.hasError('email') && login().get('email')?.touched) {
-              <span class="text-danger">El formato no es el correcto</span>
+            <span class="text-danger">El formato no es el correcto</span>
             }
           </div>
 
           <div class="mb-3">
             <label for="passw" class="form-label">Contraseña</label>
-            <input
-              type="password"
-              class="form-control"
-              id="passw"
-              formControlName="passw"
-              placeholder="Tu contraseña"
-            />
+            <input type="password" class="form-control" id="passw" formControlName="passw"
+              placeholder="Tu contraseña" />
             @if(login().get('passw')?.hasError('required') && login().get('passw')?.touched) {
-              <span class="text-danger">Este campo es requerido</span>
+            <span class="text-danger">Este campo es requerido</span>
             }
           </div>
 
           <div class="d-grid gap-2">
-            <input type="submit" value="Iniciar sesión" class="btn btn-success" />
+            <input type="submit" value="Iniciar sesión" class="btn btn-success" [disabled]="login().invalid"/>
           </div>
 
           <div *ngIf="mensajeError" class="alert alert-danger mt-3">
-    {{ mensajeError }}
-  </div>
+            {{ mensajeError }}
+          </div>
 
         </form>
-
         <div class="text-center mt-4">
-          <a
-            routerLink="/registro"
-            routerLinkActive="router-link-active"
-            class="text-success"
-          >
-            Todavía no tengo cuenta
-          </a>
+          <a routerLink="/cambiar-contrasena" routerLinkActive="router-link-active" class="text-success">
+            Olvidé mi contraseña
+          </a><br><br>
+          <div class="text-center mt-4">
+            <a routerLink="/registro" routerLinkActive="router-link-active" class="text-success">
+              Todavía no tengo cuenta
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>

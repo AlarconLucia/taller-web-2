@@ -48,4 +48,8 @@ export class UsuarioService {
         localStorage.removeItem('token');
         localStorage.removeItem('usuario');
     }
+
+    cambiarPassword(email: string, password: string) {
+      return this.http.post<any>(`${environment.api_url}/usuario/cambiar-contrasena`, { email, password })
+    }
 }
