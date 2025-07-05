@@ -25,7 +25,7 @@ export const routes: Routes = [
   },
   {
     path: 'productos',
-    component: ProductoComponent,
+    component: ProductosComponent,
   },
   {
     path: 'cambiar-contrasena',
