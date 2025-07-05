@@ -3,6 +3,7 @@ import { Response } from "express";
 import { UsuarioRepository } from "../repository/usuario.repository";
 import { UsuarioService } from "../services/usuario.service";
 import jwt from 'jsonwebtoken';
+import { usuario } from '../generated/prisma/index';
 
 const usuarioRepository = new UsuarioRepository()
 const usuarioService = new UsuarioService(usuarioRepository);
@@ -50,6 +51,23 @@ export class UsuarioController {
             res.status(500).json({ mensaje: 'Error interno del servidor' });
         }
     }
+
+    public cambiarPassword = async (_req: Request, res: Response) => {
+        const { email, passwNueva } = _req.body;
+
+        try {
+            const usuario = await usuarioService.cambiarPassword(email, passwNueva);
+
+            if (!usuario) {
+                return res.status(404).json({ mensaje: 'El email no está registrado' });
+            }
+
+            res.status(200).json({ mensaje: 'Contraseña cambiada correctamente' });
+        } catch (error) {
+            res.status(500).json({ mensaje: 'Error interno del servidor' });
+        }
+    };
+
 
     private generarToken(usuario: { id: number; email: string | null; nombre?: string | null }): string {
         return jwt.sign(
