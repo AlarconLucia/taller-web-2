@@ -1,22 +1,26 @@
-<h1>Lista de productos</h1>
+<div class="product-list-container">
+  <h1>Nuestros Productos</h1>
 
-<form (ngSubmit)="buscar()">
-  <input
-    type="text"
-    [(ngModel)]="nombre"
-    name="nombre"
-    placeholder="Buscar por nombre"
-  />
-  <select [(ngModel)]="color" name="color">
-    <option value="">Todos los colores</option>
-    <option *ngFor="let c of colores" [value]="c">{{ c }}</option>
-  </select>
-  <button type="submit">Filtrar</button>
-  <button type="button" (click)="limpiar()">Limpiar</button>
-</form>
+  <ng-container *ngIf="productos$ | async as productos; else loading">
+    <div class="product-grid" *ngIf="productos.length > 0; else noProducts">
+      <div class="product-card" *ngFor="let producto of productos">
+        <div class="product-card-content">
+          <h2>{{ producto.nombre }}</h2>
+          <p class="description">{{ producto.descripcion }}</p>
+          <p class="category">Categoría: {{ producto.tipo_producto.tipo }}</p>
+          <p class="price">
+            {{ producto.precio | currency : "ARS" : "symbol-narrow" : "1.2-2" }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
 
-<ul>
-  <li *ngFor="let producto of productos()">
-    {{ producto.nombre }} - {{ producto.color }} - ${{ producto.precio }}
-  </li>
-</ul>
+  <ng-template #loading>
+    <p>Cargando productos...</p>
+  </ng-template>
+
+  <ng-template #noProducts>
+    <p>No hay productos para mostrar en este momento.</p>
+  </ng-template>
+</div>

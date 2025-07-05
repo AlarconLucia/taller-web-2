@@ -1,6 +1,9 @@
 export interface Producto {
   id: number;
   nombre: string;
-  color: string;
+  descripcion: string;
   precio: number;
+  tipo_producto: {
+    tipo: string;
+  };
 }

@@ -1,33 +1,22 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ProductoService } from './productos.service';
+import { Observable } from 'rxjs';
+
 import { Producto } from './productos.model';
+import { ProductoService } from './productos.service';
 
 @Component({
-  selector: 'app-producto',
+  selector: 'app-productos',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   templateUrl: './productos.component.html',
+  styleUrls: ['./productos.component.css'],
 })
-export class ProductoComponent {
-  nombre = '';
-  color = '';
-  colores = ['Rojo', 'Azul', 'Negro'];
+export class ProductosComponent implements OnInit {
+  private productosService = inject(ProductoService);
+  public productos$!: Observable<Producto[]>;
 
-  productos: any;
-
-  constructor(private productoService: ProductoService) {
-    this.productos = this.productoService.getProductos();
-  }
-
-  buscar() {
-    this.productoService.filtrar(this.nombre, this.color);
-  }
-
-  limpiar() {
-    this.nombre = '';
-    this.color = '';
-    this.productoService.limpiarFiltro();
+  ngOnInit(): void {
+    this.productos$ = this.productosService.getProducts();
   }
 }
