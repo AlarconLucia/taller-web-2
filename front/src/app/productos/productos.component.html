@@ -18,6 +18,19 @@
             {{ producto.precio | currency : "ARS" : "symbol-narrow" : "1.2-2" }}
           </p>
         </div>
+        <a
+        [routerLink]="['/ver-producto', producto.id]" routerLinkActive="router-link-active" 
+        title="Ver detalle del producto"
+      >
+        <i class="fa fa-search mr-2"></i> Ver Detalle
+      </a>
+
+      <a
+        href="#"
+        title="Agregar al carrito"
+      >
+        <i class="fa fa-shopping-cart mr-2"></i> Agregar al carrito
+      </a>
       </div>
     </div>
   </ng-container>
