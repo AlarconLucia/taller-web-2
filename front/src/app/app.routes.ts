@@ -4,6 +4,7 @@ import { FormInicioSesionComponent } from './form-inicio-sesion/form-inicio-sesi
 import { InicioComponent } from './inicio/inicio.component';
 import { ProductosComponent } from './productos/productos.component';
 import { CambioPasswordComponent } from './cambio-password/cambio-password.component';
+import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
 
 export const routes: Routes = [
   {
@@ -30,5 +31,9 @@ export const routes: Routes = [
   {
     path: 'cambiar-contrasena',
     component: CambioPasswordComponent,
+  },
+  {
+    path: 'ver-producto/:id',
+    component: DetalleProductoComponent,
   },
 ];
