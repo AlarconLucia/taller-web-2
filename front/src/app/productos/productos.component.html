@@ -4,6 +4,12 @@
   <ng-container *ngIf="productos$ | async as productos; else loading">
     <div class="product-grid" *ngIf="productos.length > 0; else noProducts">
       <div class="product-card" *ngFor="let producto of productos">
+        <img
+          class="product-image"
+          [src]="'assets/img/productos/' + producto.id + '.png'"
+          [alt]="producto.nombre"
+        />
+
         <div class="product-card-content">
           <h2>{{ producto.nombre }}</h2>
           <p class="description">{{ producto.descripcion }}</p>
