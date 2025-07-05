@@ -4,6 +4,7 @@ import { UsuarioRest } from "./interfaces/usuario.interfaces.rest";
 import { map } from "rxjs";
 import { environment } from "../../../../environments/environment.development";
 import { Usuario } from "../../../modules/usuarios/interface/usuario.interface";
+import { response } from "express";
 
 @Injectable({
     providedIn: 'root'
@@ -49,7 +50,12 @@ export class UsuarioService {
         localStorage.removeItem('usuario');
     }
 
-    cambiarPassword(email: string, password: string) {
-      return this.http.post<any>(`${environment.api_url}/usuario/cambiar-contrasena`, { email, password })
+    cambiarPassword(email: string, passwNueva: string) {
+        return this.http.post<any>(`${environment.api_url}/usuario/cambiar-contrasena`, { email, passwNueva })
+            .pipe(
+                map((res) => {
+                    return res
+                }),
+            )
     }
 }

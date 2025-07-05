@@ -49,10 +49,12 @@ export class UsuarioService {
     }
 
     async cambiarPassword(email: string, passwNueva: string) {
-        if(await this.usuarioRepository.emailYaUsado(email)){
-            return this.usuarioRepository.cambiarPassword(email, passwNueva)
-        }
+        const existe = await this.usuarioRepository.emailYaUsado(email);
+        if (!existe) return null;
+
+        return this.usuarioRepository.cambiarPassword(email, passwNueva);
     }
+
 
     private async passwordInvalida(password: string): Promise<boolean> {
         if (password.length < 5 ||
