@@ -1,17 +1,27 @@
 import { prisma } from "../prisma";
 
 export class ProductoRepository {
-  async findAll(tipoProductoId?: number, sortBy?: string, sortOrder?: 'asc' | 'desc') {
-    const whereClause: { tipo?: number } = {};
+  async findAll(tipoProductoId?: number, sortBy?: string, sortOrder?: 'asc' | 'desc', query?: string) {
+    const whereClause: any = {};
+
     if (tipoProductoId) {
       whereClause.tipo = tipoProductoId;
     }
+
+    if (query) {
+      whereClause.OR = [
+        { nombre: { contains: query, mode: 'insensitive' } },
+        { descripcion: { contains: query, mode: 'insensitive' } },
+      ];
+    }
+
     const orderByClause: { [key: string]: 'asc' | 'desc' } = {};
     
     if (sortBy && sortOrder) {
       orderByClause[sortBy] = sortOrder;
     }
 
+    console.log("whereClause:", whereClause, "orderBy:", orderByClause);
     return prisma.producto.findMany({
       where: whereClause,
       orderBy: orderByClause,

@@ -15,14 +15,15 @@ export class ProductoController {
     const tipoProductoId = req.query.tipoProductoId as string | undefined;
     const sortBy = req.query.sortBy as string | undefined;
     const sortOrder = req.query.sortOrder as 'asc' | 'desc' | undefined;
+    const query = req.query.q as string | undefined;
 
     const idAsNumber = tipoProductoId ? parseInt(tipoProductoId, 10) : undefined;
 
     try {
-      const products = await productoService.findAll(idAsNumber, sortBy, sortOrder);
+      const products = await productoService.findAll(idAsNumber, sortBy, sortOrder, query);
       res.status(200).json(products);
     } catch (error) {
-      // ...
+
     }
   };
 }
