@@ -1,9 +1,4 @@
-import {
-  Component,
-  Inject,
-  PLATFORM_ID,
-  CUSTOM_ELEMENTS_SCHEMA,
-} from '@angular/core';
+import {Component,Inject,PLATFORM_ID,CUSTOM_ELEMENTS_SCHEMA,} from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 
 @Component({

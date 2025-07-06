@@ -1,45 +1,96 @@
-<div class="product-list-container">
-  <h1>Nuestros Productos</h1>
-
-  <ng-container *ngIf="productos$ | async as productos; else loading">
-    <div class="product-grid" *ngIf="productos.length > 0; else noProducts">
-      <div class="product-card" *ngFor="let producto of productos">
-        <img
-          class="product-image"
-          [src]="'assets/img/productos/' + producto.id + '.png'"
-          [alt]="producto.nombre"
-        />
-
-        <div class="product-card-content">
-          <h2>{{ producto.nombre }}</h2>
-          <p class="description">{{ producto.descripcion }}</p>
-          <p class="category">Categoría: {{ producto.tipo_producto.tipo }}</p>
-          <p class="price">
-            {{ producto.precio | currency : "ARS" : "symbol-narrow" : "1.2-2" }}
-          </p>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-3">
+      <h1 class="h2 pb-4">Categorías</h1>
+      <a (click)="aplicarFiltro(null)" class="h3 text-decoration-none d-block pb-3" style="cursor: pointer">Todos los productos</a>
+      <ul class="list-unstyled templatemo-accordion">
+        <li class="pb-3">
+          <a class="collapsed d-flex justify-content-between h3 text-decoration-none">Indumentaria<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+          <ul id="collapseThree" class="collapse show list-unstyled pl-3">
+            <li *ngFor="let tipo of tiposProducto$ | async">
+              <a (click)="aplicarFiltro(tipo.id)" class="text-decoration-none" style="cursor: pointer">{{ tipo.tipo }}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-9">
+      <div class="row">
+        <div class="col-md-6">
+          <ul class="list-inline shop-top-menu pb-3 pt-1">
+            <li class="list-inline-item">
+              <a class="h3 text-dark text-decoration-none mr-3" href="#">Todos</a>
+            </li>
+            <li class="list-inline-item">
+              <a class="h3 text-dark text-decoration-none mr-3" href="#">Hombre</a>
+            </li>
+            <li class="list-inline-item">
+              <a class="h3 text-dark text-decoration-none" href="#">Mujer</a>
+            </li>
+          </ul>
         </div>
-        <a
-        [routerLink]="['/ver-producto', producto.id]" routerLinkActive="router-link-active" 
-        title="Ver detalle del producto"
-      >
-        <i class="fa fa-search mr-2"></i> Ver Detalle
-      </a>
+      <div class="col-md-6 pb-4">
+        <div class="d-flex">
+         <select class="form-control" (change)="aplicarOrden($event)">
+           <option value="">Destacados</option>
+           <option value="precio-asc">Precio: menor a mayor</option>
+           <option value="precio-desc">Precio: mayor a menor</option>
+           <option value="nombre-asc">Nombre: A-Z</option>
+            <option value="nombre-desc">Nombre: Z-A</option>
+         </select>
+        </div>
+      </div>
+      </div>
+      <ng-container *ngIf="productos$ | async as productos; else loading">
+        <div class="row" *ngIf="productos.length > 0; else noProducts">
+          <div class="col-md-4" *ngFor="let producto of productos">
+           <div class="card mb-4 product-wap rounded-0 h-100">
+             <div class="card rounded-0">
+                <img class="card-img rounded-0 img-fluid" [src]="'assets/img/productos/' + producto.id + '.png'" [alt]="producto.nombre"/>
+             </div>
+             <div class="card-body">
+               <a [routerLink]="['/ver-producto', producto.id]" class="h3 text-decoration-none d-block">{{ producto.nombre }}</a>
+                <p class="mb-0">{{ producto.precio | currency : "ARS" : "symbol-narrow" : "1.2-2" }}</p>
+               <div class="card-buttons">
+                  <a class="btn btn-outline-success" href="#" title="Agregar a favoritos"><i class="far fa-heart"></i></a>
+                 <a class="btn btn-outline-success" [routerLink]="['/ver-producto', producto.id]" title="Ver detalle"><i class="far fa-eye"></i></a>
+                  <a class="btn btn-outline-success" href="#" title="Agregar al carrito"><i class="fas fa-cart-plus"></i></a>
+               </div>
+             </div>
+           </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #loading>
+        <p>Cargando productos...</p>
+      </ng-template>
+      <ng-template #noProducts>
+        <p>No hay productos para mostrar en este momento.</p>
+      </ng-template>
 
-      <a
-        href="#"
-        title="Agregar al carrito"
-      >
-        <i class="fa fa-shopping-cart mr-2"></i> Agregar al carrito
-      </a>
+      <div div="row">
+        <ul class="pagination pagination-lg justify-content-end">
+          <li class="page-item disabled">
+            <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#" tabindex="-1">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </ng-container>
-
-  <ng-template #loading>
-    <p>Cargando productos...</p>
-  </ng-template>
-
-  <ng-template #noProducts>
-    <p>No hay productos para mostrar en este momento.</p>
-  </ng-template>
+  </div>
 </div>
+<section class="bg-light py-5">
+  <div class="container my-4">
+    <div class="row text-center py-3">
+      <div class="col-lg-6 m-auto">
+        <h1 class="h1">Nuestras Marcas</h1>
+        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.</p>
+      </div>
+    </div>
+  </div>
+</section>

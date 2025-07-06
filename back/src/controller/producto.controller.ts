@@ -11,16 +11,18 @@ const router = Router();
 export class ProductoController {
   constructor() {}
 
-  public getAllProducts = async (_req: Request, res: Response) => {
+  public obtenerProductos = async (req: Request, res: Response) => {
+    const tipoProductoId = req.query.tipoProductoId as string | undefined;
+    const sortBy = req.query.sortBy as string | undefined;
+    const sortOrder = req.query.sortOrder as 'asc' | 'desc' | undefined;
+
+    const idAsNumber = tipoProductoId ? parseInt(tipoProductoId, 10) : undefined;
+
     try {
-      const products = await productoService.findAll();
+      const products = await productoService.findAll(idAsNumber, sortBy, sortOrder);
       res.status(200).json(products);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Error al obtener los productos" });
+      // ...
     }
   };
-  public getRouter() {
-    return router;
-  }
 }

@@ -3,8 +3,7 @@ import { ProductoRepository } from "../repository/producto.repository";
 export class ProductoService {
   constructor(private productoRepository: ProductoRepository) {}
 
-  async findAll() {
-    const products = await this.productoRepository.findAll();
-    return products;
+ async findAll(tipoProductoId?: number, sortBy?: string, sortOrder?: 'asc' | 'desc') {
+    return this.productoRepository.findAll(tipoProductoId, sortBy, sortOrder);
   }
 }

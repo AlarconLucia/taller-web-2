@@ -7,3 +7,8 @@ export interface Producto {
     tipo: string;
   };
 }
+
+export interface TipoProducto {
+  id: number;
+  tipo: string;
+}
