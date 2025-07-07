@@ -1,0 +1,20 @@
+.productoContainer{
+    display: flex;
+    margin: 0 auto;
+    
+}
+
+.imagenContainer{
+    width: 50%;
+    padding: 1rem;
+    align-content: center;
+}
+
+img{
+    height: 35rem;
+}
+
+.textoContainer{
+    padding: 3rem;
+    padding-left: 6rem;
+}

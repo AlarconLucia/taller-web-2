@@ -1,1 +1,18 @@
-<p>detalle-producto works!</p>
+<div class= "productoContainer" *ngIf="producto">
+    <div class="imagenContainer">
+        <img class="" [src]="'assets/img/productos/' + producto.id + '.png'" [alt]="producto.nombre"
+            [title]="producto.nombre" />
+    </div>
+    <div class="textoContainer">
+        <h1>{{producto.nombre}}</h1>
+        <h2>{{producto.tipo_producto.tipo}}</h2>
+        <h3>{{producto.descripcion}}</h3>
+        <h2 class="mb-0">{{ producto.precio | currency : "ARS" : "symbol-narrow" : "1.2-2" }}</h2>
+        <a class="btn btn-outline-success" title="Agregar al carrito"><i class="fas fa-cart-plus"></i>Agregar al
+            carrito</a>
+    </div>
+</div>
+<!-- Mensaje errorrr -->
+<div *ngIf="!producto">
+    <p>{{mensajeError}}</p>
+</div>

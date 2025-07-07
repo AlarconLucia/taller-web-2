@@ -1,10 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable, BehaviorSubject, switchMap, combineLatest, debounceTime, distinctUntilChanged } from 'rxjs';
-import { Producto, TipoProducto } from './productos.model';
-import { ProductoService, TipoProductoService } from './productos.service';
+import { Producto, TipoProducto } from '../api/services/producto/interfaces/productos.model';
 import { RouterModule } from '@angular/router';
 import { CarritoService } from '../services/carrito.service';
+import { ProductoService, TipoProductoService } from '../api/services/producto/productos.service';
 
 @Component({
   selector: 'app-productos',

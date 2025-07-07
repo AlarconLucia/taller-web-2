@@ -16,7 +16,7 @@ export class ProductoRepository {
     }
 
     const orderByClause: { [key: string]: 'asc' | 'desc' } = {};
-    
+
     if (sortBy && sortOrder) {
       orderByClause[sortBy] = sortOrder;
     }
@@ -29,5 +29,18 @@ export class ProductoRepository {
         tipo_producto: { select: { tipo: true } },
       },
     });
+  }
+
+  async obtenerProductoporId(idBuscado: number) {
+    return await prisma.producto.findUnique({
+      where: { id: idBuscado },
+      include: {
+        tipo_producto: {
+          select: {
+            tipo: true
+          }
+        }
+      }
+    })
   }
 }

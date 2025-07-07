@@ -6,4 +6,8 @@ export class ProductoService {
  async findAll(tipoProductoId?: number, sortBy?: string, sortOrder?: 'asc' | 'desc', query?: string) {
     return this.productoRepository.findAll(tipoProductoId, sortBy, sortOrder, query);
   }
+
+    async obtenerProductoPorId(id: number) {
+    return this.productoRepository.obtenerProductoporId(id);
+  }
 }
