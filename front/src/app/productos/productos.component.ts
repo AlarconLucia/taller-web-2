@@ -14,7 +14,7 @@ import { CarritoService } from '../services/carrito.service';
   styleUrls: ['./productos.component.css'],
 })
 export class ProductosComponent {
- public productos$: Observable<Producto[]>;
+  public productos$: Observable<Producto[]>;
   public tiposProducto$: Observable<TipoProducto[]>;
   private filtro$ = new BehaviorSubject<number | null>(null);
   private orden$ = new BehaviorSubject<{ sortBy: string; sortOrder: string } | null>(null);
@@ -49,7 +49,7 @@ export class ProductosComponent {
   }
 
   aplicarBusqueda(termino: string): void {
-    this.busqueda$.next(termino.trim() ? termino.trim() : null);
+    this.busqueda$.next(termino.trim() || null);
   }
 
   agregarAlCarrito(producto: Producto): void {

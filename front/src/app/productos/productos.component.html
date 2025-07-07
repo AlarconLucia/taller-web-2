@@ -2,13 +2,16 @@
   <div class="row">
     <div class="col-lg-3">
       <h1 class="h2 pb-4">Categorías</h1>
-      <a (click)="aplicarFiltro(null)" class="h3 text-decoration-none d-block pb-3" style="cursor: pointer">Todos los productos</a>
+      <a (click)="aplicarFiltro(null)" class="h3 text-decoration-none d-block pb-3" style="cursor: pointer">Todos los
+        productos</a>
       <ul class="list-unstyled templatemo-accordion">
         <li class="pb-3">
-          <a class="collapsed d-flex justify-content-between h3 text-decoration-none">Indumentaria<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+          <a class="collapsed d-flex justify-content-between h3 text-decoration-none">Indumentaria<i
+              class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
           <ul id="collapseThree" class="collapse show list-unstyled pl-3">
             <li *ngFor="let tipo of tiposProducto$ | async">
-              <a (click)="aplicarFiltro(tipo.id)" class="text-decoration-none" style="cursor: pointer">{{ tipo.tipo }}</a>
+              <a (click)="aplicarFiltro(tipo.id)" class="text-decoration-none" style="cursor: pointer">{{ tipo.tipo
+                }}</a>
             </li>
           </ul>
         </li>
@@ -17,43 +20,48 @@
     <div class="col-lg-9">
       <div class="row">
         <div class="col-md-6">
-          <form (ngSubmit)="aplicarBusqueda(searchInput.value)">
-            <div class="input-group">
-              <input #searchInput type="text" class="form-control" placeholder="Buscar por nombre o descripción...">
-              <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </div>
-          </form>
+          <div class="input-group">
+            <input #searchInput type="text" class="form-control" placeholder="Buscar por nombre o descripción...">
+            <button class="btn btn-outline-success" type="button" (click)="aplicarBusqueda(searchInput.value)">
+              Buscar
+            </button>
+          </div>
         </div>
-      <div class="col-md-6 pb-4">
-        <div class="d-flex">
-         <select class="form-control" (change)="aplicarOrden($event)">
-           <option value="">Destacados</option>
-           <option value="precio-asc">Precio: menor a mayor</option>
-           <option value="precio-desc">Precio: mayor a menor</option>
-           <option value="nombre-asc">Nombre: A-Z</option>
-            <option value="nombre-desc">Nombre: Z-A</option>
-         </select>
+        <div class="col-md-6 pb-4">
+          <div class="d-flex">
+            <select class="form-control" (change)="aplicarOrden($event)">
+              <option value="">Destacados</option>
+              <option value="precio-asc">Precio: menor a mayor</option>
+              <option value="precio-desc">Precio: mayor a menor</option>
+              <option value="nombre-asc">Nombre: A-Z</option>
+              <option value="nombre-desc">Nombre: Z-A</option>
+            </select>
+          </div>
         </div>
-      </div>
       </div>
       <ng-container *ngIf="productos$ | async as productos; else loading">
         <div class="row" *ngIf="productos.length > 0; else noProducts">
           <div class="col-md-4" *ngFor="let producto of productos">
-           <div class="card mb-4 product-wap rounded-0 h-100">
-             <div class="card rounded-0">
-                <img class="card-img rounded-0 img-fluid" [src]="'assets/img/productos/' + producto.id + '.png'" [alt]="producto.nombre"/>
-             </div>
-             <div class="card-body">
-               <a [routerLink]="['/ver-producto', producto.id]" class="h3 text-decoration-none d-block">{{ producto.nombre }}</a>
+            <div class="card mb-4 product-wap rounded-0 h-100">
+              <div class="card rounded-0">
+                <img class="card-img rounded-0 img-fluid" [src]="'assets/img/productos/' + producto.id + '.png'"
+                  [alt]="producto.nombre" />
+              </div>
+              <div class="card-body">
+                <a [routerLink]="['/ver-producto', producto.id]" class="h3 text-decoration-none d-block">{{
+                  producto.nombre }}</a>
                 <p class="mb-0">{{ producto.precio | currency : "ARS" : "symbol-narrow" : "1.2-2" }}</p>
-                  <div class="card-buttons">
-                   <a class="btn btn-outline-success" href="#" title="Agregar a favoritos"><i class="far fa-heart"></i></a>
-                   <a class="btn btn-outline-success" [routerLink]="['/ver-producto', producto.id]" title="Ver detalle"><i class="far fa-eye"></i></a>
+                <div class="card-buttons">
+                  <a class="btn btn-outline-success" title="Agregar a favoritos"><i
+                      class="far fa-heart"></i></a>
+                  <a class="btn btn-outline-success" [routerLink]="['/ver-producto', producto.id]"
+                    title="Ver detalle"><i class="far fa-eye"></i></a>
 
-                   <a class="btn btn-outline-success" (click)="agregarAlCarrito(producto)" title="Agregar al carrito"><i class="fas fa-cart-plus"></i></a>
-                  </div>
-             </div>
-           </div>
+                  <a class="btn btn-outline-success" (click)="agregarAlCarrito(producto)" title="Agregar al carrito"><i
+                      class="fas fa-cart-plus"></i></a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </ng-container>
@@ -67,13 +75,13 @@
       <div div="row">
         <ul class="pagination pagination-lg justify-content-end">
           <li class="page-item disabled">
-            <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#" tabindex="-1">1</a>
+            <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" tabindex="-1">1</a>
           </li>
           <li class="page-item">
-            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
+            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" >2</a>
           </li>
           <li class="page-item">
-            <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>
+            <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" >3</a>
           </li>
         </ul>
       </div>
