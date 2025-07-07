@@ -2,17 +2,11 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable, BehaviorSubject, switchMap, combineLatest, debounceTime, distinctUntilChanged } from 'rxjs';
 import { Producto, TipoProducto } from './productos.model';
-import { RouterModule } from '@angular/router';
 import { CarritoService } from '../services/carrito.service';
-import { ProductoService, TipoProductoService } from './productos.service';
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { Observable, BehaviorSubject, switchMap, combineLatest, tap } from 'rxjs';
-
 import { ProductoService, TipoProductoService } from '../services/productos.service';
-import { CarritoService } from '../services/carrito.service';
-import { Producto, TipoProducto } from './productos.model';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 // 1. Definimos la forma que tendrá nuestro estado guardado
 interface FiltrosEstado {
