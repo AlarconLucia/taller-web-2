@@ -1,18 +1,20 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
+import { Inject, inject, Injectable, PLATFORM_ID } from "@angular/core";
 import { UsuarioRest } from "./interfaces/usuario.interfaces.rest";
 import { map } from "rxjs";
 import { environment } from "../../../../environments/environment.development";
 import { Usuario } from "../../../modules/usuarios/interface/usuario.interface";
+import { isPlatformBrowser } from "@angular/common";
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class UsuarioService {
-    http = inject(HttpClient)
-
-    constructor() { }
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: object
+  ) { }
 
     registrarUsuario(usuario: Usuario) {
         let headers = new HttpHeaders();
@@ -43,6 +45,13 @@ export class UsuarioService {
                 })
             );
     }
+
+    estaLogueado(): boolean {
+    if (isPlatformBrowser(this.platformId)) {
+      return !!localStorage.getItem('token');
+    }
+    return false;
+  }
 
     cerrarSesion() {
         localStorage.removeItem('token');

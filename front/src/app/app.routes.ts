@@ -5,6 +5,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { ProductosComponent } from './productos/productos.component';
 import { CambioPasswordComponent } from './cambio-password/cambio-password.component';
 import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
   {
@@ -21,19 +22,23 @@ export const routes: Routes = [
     component: FormRegistroComponent,
   },
   {
+    path: 'cambiar-contrasena',
+    component: CambioPasswordComponent,
+  },
+
+  {
     path: 'inicio',
     component: InicioComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'productos',
     component: ProductosComponent,
-  },
-  {
-    path: 'cambiar-contrasena',
-    component: CambioPasswordComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'ver-producto/:id',
     component: DetalleProductoComponent,
+    canActivate: [authGuard],
   },
 ];

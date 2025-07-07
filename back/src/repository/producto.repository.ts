@@ -10,8 +10,8 @@ export class ProductoRepository {
 
     if (query) {
       whereClause.OR = [
-        { nombre: { contains: query, mode: 'insensitive' } },
-        { descripcion: { contains: query, mode: 'insensitive' } },
+          { nombre: { contains: query } },
+          { descripcion: { contains: query } },
       ];
     }
 
@@ -21,7 +21,6 @@ export class ProductoRepository {
       orderByClause[sortBy] = sortOrder;
     }
 
-    console.log("whereClause:", whereClause, "orderBy:", orderByClause);
     return prisma.producto.findMany({
       where: whereClause,
       orderBy: orderByClause,
