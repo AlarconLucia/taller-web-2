@@ -26,6 +26,7 @@ export class HeaderComponent {
   }
 
   onClick() {
+    localStorage.removeItem('filtros_productos_nova_shop');
     this.usuarioService.cerrarSesion();
     this.router.navigate(['/inicio-sesion']);
   }
