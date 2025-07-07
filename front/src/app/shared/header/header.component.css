@@ -1,0 +1,45 @@
+:host {
+  --lila: #3f3c78;
+  --gris-texto: #a29fad;
+  --neon-celeste: #00d9ff;
+}
+
+nav.shadow {
+  background-color: var(--lila) !important;
+}
+
+nav.shadow a,
+nav.shadow i {
+  color: var(--gris-texto) !important;
+  transition: color 0.3s ease;
+}
+
+nav.shadow a:hover,
+nav.shadow a:hover i {
+  color: #ffffff !important;
+}
+
+.link-neon,
+nav.shadow .nav-link {
+  text-decoration: none !important;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.link-neon:hover,
+nav.shadow .nav-link:hover {
+  border-bottom-color: var(--neon-celeste) !important;
+}
+
+nav.shadow a.navbar-brand.text-success {
+  color:var(--neon-celeste) !important;
+}
+nav.shadow a.navbar-brand.text-success:hover {
+  color:var(--neon-celeste) !important;
+}
+
+nav.shadow .badge {
+  color: var(--lila) !important;
+  background-color: #f8f9fa !important;
+}

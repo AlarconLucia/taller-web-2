@@ -17,9 +17,11 @@ import { CarritoService } from '../../services/carrito.service';
 export class HeaderComponent {
   public totalItemsEnCarrito$: Observable<number>;
 
-  private usuarioService = inject(UsuarioService);
-
-  constructor(private router: Router, private carritoService: CarritoService) {
+  constructor(
+    private router: Router,
+    private carritoService: CarritoService,
+    public usuarioService: UsuarioService
+  ) {
     this.totalItemsEnCarrito$ = this.carritoService.items$.pipe(
       map(items => items.reduce((total, item) => total + item.cantidad, 0))
     );
