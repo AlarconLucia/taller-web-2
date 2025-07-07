@@ -1,9 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable, BehaviorSubject, switchMap, combineLatest, debounceTime, distinctUntilChanged, tap } from 'rxjs';
-import { Producto, TipoProducto } from './productos.model';
-import { CarritoService } from '../services/carrito.service';
-import { ProductoService, TipoProductoService } from '../services/productos.service';
+import { Producto, TipoProducto } from '../api/services/interfaces/productos.model';
+import { CarritoService } from '../api/services/carrito.service';
+import { ProductoService, TipoProductoService } from '../api/services/productos.service';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';

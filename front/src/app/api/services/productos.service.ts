@@ -2,9 +2,9 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Producto } from '../productos/productos.model';
-import { TipoProducto } from '../productos/productos.model';
-import { environment } from '../../environments/environment.development';
+import { Producto } from './interfaces/productos.model';
+import { TipoProducto } from './interfaces/productos.model';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',

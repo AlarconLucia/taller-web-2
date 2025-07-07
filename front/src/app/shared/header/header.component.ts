@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { UsuarioService } from '../../api/services/usuario/usuario.service';
-import { CarritoService } from '../../services/carrito.service';
+import { UsuarioService } from '../../api/services/usuario.service';
+import { CarritoService } from '../../api/services/carrito.service';
 
 @Component({
   standalone: true,

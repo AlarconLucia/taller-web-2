@@ -1,9 +1,9 @@
 import { producto } from './../../../../back/src/generated/prisma/index.d';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductoService } from '../services/productos.service';
+import { ProductoService } from '../api/services/productos.service';
 import { ActivatedRoute } from '@angular/router';
-import { Producto } from '../productos/productos.model';
+import { Producto } from '../api/services/interfaces/productos.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
