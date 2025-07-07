@@ -38,6 +38,10 @@ INSERT INTO Tipo_producto (tipo) VALUES
   ('Accesorio'),
   ('Pantalón'),
   ('Campera');
+  
+  INSERT INTO Tipo_producto (tipo) VALUES 
+  ('Zapatos'),
+  ('Cuerpo entero');
 
 INSERT INTO Producto (nombre, descripcion, precio, tipo) VALUES
   ('NeoSkin Tee', 'Remera térmica con nanotela', 4999.99, 1),
@@ -50,3 +54,21 @@ INSERT INTO Producto (nombre, descripcion, precio, tipo) VALUES
   ('NanoBracelet', 'Pulsera con ID molecular', 4500.00, 3),
   ('HoloPants', 'Pantalón con camuflaje óptico', 10200.00, 4),
   ('Storm Coat', 'Campera resistente a tormentas eléctricas', 13500.00, 5);
+  
+  INSERT INTO Producto (nombre, descripcion, precio, tipo) VALUES
+	('HoloFrame X3', 'Lentes de ingeniería óptica avanzada', 6500.00, 3),
+    ('Vestido HoloSkin', 'Vestido adaptable a la temperatura del cuerpo', 12000.00, 7),
+    ('Campera Vórtice', 'Campera con geometría de precisión quirúrgica', 11500.00, 5),
+    ('Neon Stride', 'Botas con diseño angular y luz azul integrada', 8200.00, 6),
+    ('MonoPulse', 'Botas estilo retro-futurista de alto contraste', 10500.00, 6),
+    ('SynFiber Suit', 'Traje ergodinámico con líneas biomecánicas', 15000.00, 7),
+    ('Cyber Heel Pro', 'Tacones con resorte y módulos mecánicos', 9100.00, 6),
+    ('CoreTitan Shell', 'Armadura pectoral con núcleo de poder', 21000.00, 7);
+  
+  
+  
+  
+  
+  
+  
+  

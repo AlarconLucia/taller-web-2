@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable, BehaviorSubject, switchMap, combineLatest, debounceTime, distinctUntilChanged } from 'rxjs';
+import { Observable, BehaviorSubject, switchMap, combineLatest, debounceTime, distinctUntilChanged, tap } from 'rxjs';
 import { Producto, TipoProducto } from './productos.model';
 import { CarritoService } from '../services/carrito.service';
 import { ProductoService, TipoProductoService } from '../services/productos.service';
@@ -72,6 +72,12 @@ export class ProductosComponent {
   // Métodos para actualizar el estado (estos no cambian)
   aplicarFiltro(tipoId: number | null): void {
     this.filtro$.next(tipoId);
+  }
+
+  resetearFiltros(): void {
+    this.filtro$.next(null);
+    this.busqueda$.next(null);
+    this.orden$.next(null);
   }
 
   aplicarOrden(event: Event): void {

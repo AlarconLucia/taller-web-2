@@ -10,8 +10,8 @@ export class ProductoRepository {
 
     if (query) {
       whereClause.OR = [
-          { nombre: { contains: query } },
-          { descripcion: { contains: query } },
+        { nombre: { contains: query } },
+        { descripcion: { contains: query } },
       ];
     }
 
