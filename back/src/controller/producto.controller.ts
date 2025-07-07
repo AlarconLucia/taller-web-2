@@ -23,7 +23,8 @@ export class ProductoController {
       const products = await productoService.findAll(idAsNumber, sortBy, sortOrder, query);
       res.status(200).json(products);
     } catch (error) {
-
+       console.error("Error al obtener productos:", error);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   };
 }
