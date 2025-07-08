@@ -11,4 +11,3 @@ productoRouter.get(
 );
 productoRouter.get("/ver-producto/:id", productoController.obtenerProductoPorId.bind(productoController));
 productoRouter.post("/registro", upload.single('imagen'), productoController.registrarProducto.bind(productoController));
-
