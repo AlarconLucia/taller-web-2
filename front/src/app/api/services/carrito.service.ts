@@ -61,4 +61,12 @@ export class CarritoService {
     this._items$.next([]);
     this.guardarCarrito();
   }
+
+    getItemsParaPedido(): { producto: number, cantidad: number }[] {
+    const items = this._items$.getValue();
+    return items.map(item => ({
+      producto: item.producto.id,
+      cantidad: item.cantidad
+    }));
+  }
 }

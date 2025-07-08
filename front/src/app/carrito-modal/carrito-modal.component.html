@@ -34,8 +34,10 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-danger" (click)="vaciarCarrito()">Vaciar Carrito</button>
-        <button type="button" class="btn btn-success">Finalizar Compra</button>
+         <button type="button" class="btn btn-success" (click)="finalizarCompra()">Finalizar Compra</button>
       </div>
+      <div *ngIf="mensajeExito" class="alert alert-success mt-3">{{ mensajeExito }}</div>
+      <div *ngIf="mensajeError" class="alert alert-danger mt-3">{{ mensajeError }}</div>
     </div>
   </div>
 </div>

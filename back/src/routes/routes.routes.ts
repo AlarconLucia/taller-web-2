@@ -2,6 +2,7 @@ import { Router } from "express";
 import { usuarioRouter } from "./usuario/usuario.routes";
 import { productoRouter } from "./producto/producto.routes";
 import { tipoProductoRouter } from "./producto/tipo-producto.routes";
+import { pedidoRouter } from './pedido/pedido.routes';
 
 export class AppRoutes {
   static get routes(): Router {
@@ -9,6 +10,7 @@ export class AppRoutes {
     router.use("/api/usuario", usuarioRouter);
     router.use("/api/productos", productoRouter);
     router.use("/api/tipos-producto", tipoProductoRouter);
+    router.use('/api/pedidos', pedidoRouter);
     return router;
   }
 }

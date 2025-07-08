@@ -66,4 +66,15 @@ export class UsuarioService {
                 }),
             )
     }
+
+     obtenerIdUsuarioLogueado(): number | null {
+    if (isPlatformBrowser(this.platformId)) {
+      const usuarioGuardado = localStorage.getItem('usuario');
+      if (usuarioGuardado) {
+        const usuario = JSON.parse(usuarioGuardado);
+        return usuario.id;
+      }
+    }
+    return null;
+  }
 }

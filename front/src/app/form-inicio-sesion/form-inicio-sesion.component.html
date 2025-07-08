@@ -1,50 +1,72 @@
-<div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card shadow p-4 bg-light">
-        <h1 class="h2 text-center mb-4">¡Hola!</h1>
+<div class="login-wrapper">
 
-        <form [formGroup]="login()" (ngSubmit)="onSubmit()">
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" formControlName="email"
-              placeholder="ejemplo@email.com" />
-            @if(login().get('email')?.hasError('required') && login().get('email')?.touched) {
-            <span class="text-danger">Este campo es requerido</span>
-            }
-            @if(login().get('email')?.hasError('email') && login().get('email')?.touched) {
-            <span class="text-danger">El formato no es el correcto</span>
-            }
-          </div>
+  <div class="login-card">
 
-          <div class="mb-3">
-            <label for="passw" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="passw" formControlName="passw"
-              placeholder="Tu contraseña" />
-            @if(login().get('passw')?.hasError('required') && login().get('passw')?.touched) {
-            <span class="text-danger">Este campo es requerido</span>
-            }
-          </div>
+<div class="col-lg-7 d-none d-lg-flex justify-content-center align-items-center model-viewer-container">
+  <ng-container *ngIf="isBrowser">
+                  <model-viewer
+                src="assets/img/login.glb"
+                alt="Modelo 3D"
+                auto-rotate
+                camera-controls
+                disable-zoom
+                reveal="auto"
+                style="width: 100%; height: 400px"
+              >
+              </model-viewer>
+  </ng-container>
+</div>
 
-          <div class="d-grid gap-2">
-            <input type="submit" value="Iniciar sesión" class="btn btn-success" [disabled]="login().invalid"/>
-          </div>
+    <div class="login-form">
+      <h2 class="mb-2">¡Hola de nuevo! :)</h2>
+      <p class="text-muted mb-4">Para acceder a nuestro catálogo, por favor iniciá sesión.</p>
 
-          <div *ngIf="mensajeError" class="alert alert-danger mt-3">
-            {{ mensajeError }}
-          </div>
+      <form [formGroup]="login()" (ngSubmit)="onSubmit()">
 
-        </form>
-        <div class="text-center mt-4">
-          <a routerLink="/cambiar-contrasena" routerLinkActive="router-link-active" class="text-success">
-            Olvidé mi contraseña
-          </a><br><br>
-          <div class="text-center mt-4">
-            <a routerLink="/registro" routerLinkActive="router-link-active" class="text-success">
-              Todavía no tengo cuenta
-            </a>
-          </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+          <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email" />
         </div>
+        @if(login().get('email')?.hasError('required') && login().get('email')?.touched) {
+          <p class="text-danger small mb-2">Este campo es requerido</p>
+        }
+        @if(login().get('email')?.hasError('email') && login().get('email')?.touched) {
+          <p class="text-danger small mb-2">El formato no es el correcto</p>
+        }
+
+        <div class="input-group mb-3">
+          <span class="input-group-text"><i class="fa fa-lock"></i></span>
+          <input type="password" class="form-control" id="passw" formControlName="passw" placeholder="Contraseña" />
+        </div>
+        @if(login().get('passw')?.hasError('required') && login().get('passw')?.touched) {
+          <p class="text-danger small mb-2">Este campo es requerido</p>
+        }
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="rememberMe">
+            <label class="form-check-label" for="rememberMe">Recordarme</label>
+          </div>
+          <a routerLink="/cambiar-contrasena" class="small-link">Olvidé mi contraseña</a>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary-solid flex-grow-1" [disabled]="login().invalid">Iniciar Sesión</button>
+          <a routerLink="/registro" class="btn btn-primary-outline flex-grow-1">Crear Cuenta</a>
+        </div>
+
+        <div *ngIf="mensajeError" class="alert alert-danger mt-3">
+          {{ mensajeError }}
+        </div>
+
+      </form>
+
+      <div class="separator my-4">O podés unirte con</div>
+      <div class="social-login">
+        <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
       </div>
     </div>
   </div>
+</div>

@@ -1,133 +1,94 @@
-<div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card shadow p-4 bg-light">
-        <h1 class="h2 text-center mb-4">Registro</h1>
+<div class="login-wrapper">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-11 col-md-8 col-lg-6">
 
-        <form [formGroup]="registro()" (ngSubmit)="onSubmit()">
-          <!-- Nombre -->
-          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input
-              type="text"
-              class="form-control"
-              id="nombre"
-              formControlName="nombre"
-              placeholder="Tu nombre"
-            />
-            @if(registro().get('nombre')?.hasError('required') && registro().get('nombre')?.touched) {
-              <p class="text-danger">Este campo es requerido</p>
-            }
-            @if(registro().get('nombre')?.hasError('minlength') && registro().get('nombre')?.touched) {
-              <p class="text-danger">El nombre debe tener mínimo tres carácteres</p>
-            }
+        <div class="card futuristico shadow p-4 p-md-5">
+          <h2 class="mb-2 text-center">Crear una cuenta</h2>
+          <p class="text-muted mb-4 text-center">Completá tus datos para unirte.</p>
+
+          <form [formGroup]="registro()" (ngSubmit)="onSubmit()">
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                  <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Tu nombre" />
+                </div>
+                @if(registro().get('nombre')?.hasError('required') && registro().get('nombre')?.touched) {
+                  <div class="text-danger small mt-1">Este campo es requerido</div>
+                }
+                @if(registro().get('nombre')?.hasError('minlength') && registro().get('nombre')?.touched) {
+                  <div class="text-danger small mt-1">Mínimo 3 caracteres</div>
+                }
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                  <input type="text" class="form-control" id="apellido" formControlName="apellido" placeholder="Tu apellido" />
+                </div>
+                @if(registro().get('apellido')?.hasError('required') && registro().get('apellido')?.touched) {
+                  <div class="text-danger small mt-1">Este campo es requerido</div>
+                }
+                @if(registro().get('apellido')?.hasError('minlength') && registro().get('apellido')?.touched) {
+                  <div class="text-danger small mt-1">Mínimo 3 caracteres</div>
+                }
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="direccion" class="form-label">Dirección</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-map-marker-alt"></i></span>
+                <input type="text" class="form-control" id="direccion" formControlName="direccion" placeholder="Tu dirección" />
+              </div>
+               @if(registro().get('direccion')?.hasError('required') && registro().get('direccion')?.touched) {
+                  <div class="text-danger small mt-1">Este campo es requerido</div>
+                }
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                <input type="email" class="form-control" id="email" formControlName="email" placeholder="ejemplo@email.com" />
+              </div>
+              @if(registro().get('email')?.hasError('required') && registro().get('email')?.touched) {
+                <div class="text-danger small mt-1">Este campo es requerido</div>
+              }
+              @if(registro().get('email')?.hasError('email') && registro().get('email')?.touched) {
+                <div class="text-danger small mt-1">El formato no es correcto</div>
+              }
+            </div>
+
+            <div class="mb-3">
+              <label for="passw" class="form-label">Contraseña</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control" id="passw" formControlName="passw" placeholder="Tu contraseña" />
+              </div>
+              @if(registro().get('passw')?.hasError('required') && registro().get('passw')?.touched) {
+                <div class="text-danger small mt-1">Este campo es requerido</div>
+              }
+              </div>
+
+            <div class="d-grid gap-2 mt-4">
+              <input type="submit" value="Crear Cuenta" class="btn btn-primary-solid" [disabled]="registro().invalid" />
+            </div>
+
+            <div *ngIf="mensajeError" class="alert alert-danger mt-3">{{ mensajeError }}</div>
+            <div *ngIf="mensajeExito" class="alert alert-success mt-3">{{ mensajeExito }}</div>
+
+          </form>
+
+          <div class="separator my-4">O</div>
+          <div class="text-center">
+            <a routerLink="/inicio-sesion" class="small-link">Ya tengo una cuenta</a>
           </div>
 
-          <!-- Apellido -->
-          <div class="mb-3">
-            <label for="apellido" class="form-label">Apellido</label>
-            <input
-              type="text"
-              class="form-control"
-              id="apellido"
-              formControlName="apellido"
-              placeholder="Tu apellido"
-            />
-            @if(registro().get('apellido')?.hasError('required') && registro().get('apellido')?.touched) {
-              <p class="text-danger">Este campo es requerido</p>
-            }
-            @if(registro().get('apellido')?.hasError('minlength') && registro().get('apellido')?.touched) {
-              <p class="text-danger">El apellido debe tener mínimo tres carácteres</p>
-            }
-          </div>
-
-          <!-- Dirección -->
-          <div class="mb-3">
-            <label for="direccion" class="form-label">Dirección</label>
-            <input
-              type="text"
-              class="form-control"
-              id="direccion"
-              formControlName="direccion"
-              placeholder="Tu dirección"
-            />
-            @if(registro().get('direccion')?.hasError('required') && registro().get('direccion')?.touched) {
-              <p class="text-danger">Este campo es requerido</p>
-            }
-            @if(registro().get('direccion')?.hasError('minlength') && registro().get('direccion')?.touched) {
-              <p class="text-danger">La dirección debe tener mínimo cinco carácteres</p>
-            }
-          </div>
-
-          <!-- Email -->
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              formControlName="email"
-              placeholder="ejemplo@email.com"
-            />
-            @if(registro().get('email')?.hasError('required') && registro().get('email')?.touched) {
-              <p class="text-danger">Este campo es requerido</p>
-            }
-            @if(registro().get('email')?.hasError('email') && registro().get('email')?.touched) {
-              <p class="text-danger">El formato no es el correcto</p>
-            }
-          </div>
-
-          <!-- Contraseña -->
-          <div class="mb-3">
-            <label for="passw" class="form-label">Contraseña</label>
-            <input
-              type="password"
-              class="form-control"
-              id="passw"
-              formControlName="passw"
-              placeholder="Tu contraseña"
-            />
-            @if(registro().get('passw')?.hasError('required') && registro().get('passw')?.touched) {
-              <p class="text-danger">Este campo es requerido</p>
-            }
-            @if(registro().get('passw')?.hasError('minlength') && registro().get('passw')?.touched) {
-              <p class="text-danger">La contraseña debe tener mínimo cinco carácteres</p>
-            }
-            @if(registro().get('passw')?.errors?.['sinNumero'] && registro().get('passw')?.touched) {
-              <p class="text-danger">La contraseña debe contener al menos un número</p>
-            }
-            @if(registro().get('passw')?.errors?.['sinMayusculaOMinuscula'] && registro().get('passw')?.touched) {
-              <p class="text-danger">La contraseña debe contener al menos una letra mayúscula y una minúscula</p>
-            }
-          </div>
-
-          <!-- Botón Guardar -->
-          <div class="d-grid gap-2 mb-3">
-            <input
-              type="submit"
-              id="save"
-              value="Guardar"
-              class="btn btn-success"
-              [disabled]="registro().invalid"
-            />
-          </div>
-
-          <!-- Mensajes -->
-          <div *ngIf="mensajeError" class="alert alert-danger">
-            {{ mensajeError }}
-          </div>
-
-          <div *ngIf="mensajeExito" class="alert alert-success">
-            {{ mensajeExito }} <br /><br />
-            <a
-              routerLink="/inicio-sesion"
-              routerLinkActive="router-link-active"
-              class="text-success"
-            >
-              Iniciar sesión
-            </a>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
