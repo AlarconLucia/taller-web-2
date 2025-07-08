@@ -44,11 +44,12 @@
 
         <div class="d-flex justify-content-between align-items-center mb-4">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="rememberMe">
+            <input class="form-check-input" type="checkbox" id="rememberMe" formControlName="rememberMe">
             <label class="form-check-label" for="rememberMe">Recordarme</label>
           </div>
           <a routerLink="/cambiar-contrasena" class="small-link">Olvidé mi contraseña</a>
         </div>
+
 
         <div class="d-flex gap-2">
           <button type="submit" class="btn btn-primary-solid flex-grow-1" [disabled]="login().invalid">Iniciar Sesión</button>

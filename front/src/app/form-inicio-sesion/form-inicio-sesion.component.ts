@@ -1,9 +1,8 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, signal, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, inject, signal, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuarioService } from '../api/services/usuario.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-
 
 @Component({
   selector: 'app-form-inicio-sesion',
@@ -13,21 +12,10 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   styleUrl: './form-inicio-sesion.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class FormInicioSesionComponent {
+export class FormInicioSesionComponent implements OnInit {
   public isBrowser: boolean;
-
   private usuarioService = inject(UsuarioService);
   mensajeError: string | null = null;
-
-  constructor(
-    private router: Router,
-    @Inject(PLATFORM_ID) private platformId: object
-  ) {
-    this.isBrowser = isPlatformBrowser(this.platformId);
-    if (this.isBrowser) {
-      import('@google/model-viewer');
-    }
-  }
 
   login = signal<FormGroup>(
     new FormGroup({
@@ -39,23 +27,52 @@ export class FormInicioSesionComponent {
         nonNullable: true,
         validators: [Validators.required],
       }),
+      rememberMe: new FormControl(false)
     })
   );
+
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: object
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    if (this.isBrowser) {
+      import('@google/model-viewer');
+    }
+  }
+
+  ngOnInit(): void {
+    if (this.isBrowser) {
+      const rememberedEmail = localStorage.getItem('remembered_email');
+      if (rememberedEmail) {
+        this.login().get('email')?.setValue(rememberedEmail);
+        this.login().get('rememberMe')?.setValue(true);
+      }
+    }
+  }
 
   onSubmit() {
     const form = this.login();
     if (form.valid) {
       const datos = form.value;
+
+      if (this.isBrowser) {
+        if (datos.rememberMe) {
+          localStorage.setItem('remembered_email', datos.email);
+        } else {
+          localStorage.removeItem('remembered_email');
+        }
+      }
+
       this.usuarioService.iniciarSesion(datos.email, datos.passw).subscribe({
-        next: (usuario) => {
-          const loginExitoso = true;
+        next: usuario => {
           console.log('Login exitoso', usuario);
           this.router.navigate(['/inicio']);
         },
-        error: (err) => {
+        error: err => {
           console.error('Error de login', err);
           this.mensajeError = 'Email y/o contraseña incorrectos';
-        },
+        }
       });
     }
   }
