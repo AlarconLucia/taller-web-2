@@ -55,6 +55,7 @@ export class FormInicioSesionComponent implements OnInit {
     const form = this.login();
     if (form.valid) {
       const datos = form.value;
+      let rol: '';
 
       if (this.isBrowser) {
         if (datos.rememberMe) {
@@ -67,7 +68,16 @@ export class FormInicioSesionComponent implements OnInit {
       this.usuarioService.iniciarSesion(datos.email, datos.passw).subscribe({
         next: usuario => {
           console.log('Login exitoso', usuario);
-          this.router.navigate(['/inicio']);
+          const usuarioJSON = localStorage.getItem('usuario');
+
+          if (usuarioJSON) {
+            const usuario = JSON.parse(usuarioJSON);
+            if (usuario.tipo === 'admin') {
+              this.router.navigate(['/inicio-admin']);
+            } else {
+              this.router.navigate(['/inicio']);
+            }
+          }
         },
         error: err => {
           console.error('Error de login', err);

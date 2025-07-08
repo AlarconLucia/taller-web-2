@@ -6,6 +6,7 @@ import { ProductosComponent } from './productos/productos.component';
 import { CambioPasswordComponent } from './cambio-password/cambio-password.component';
 import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
 import { authGuard } from './auth.guard';
+import { AdminComponent } from './admin/admin.component';
 import { PerfilComponent } from './perfil/perfil.component';
 
 
@@ -41,6 +42,11 @@ export const routes: Routes = [
   {
     path: 'ver-producto/:id',
     component: DetalleProductoComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'inicio-admin',
+    component: AdminComponent,
     canActivate: [authGuard],
   },
   {

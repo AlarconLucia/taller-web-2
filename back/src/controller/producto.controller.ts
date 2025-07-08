@@ -47,4 +47,35 @@ export class ProductoController {
       res.status(500).json({ mensaje: "Error interno del servidor" });
     }
   };
+
+  public registrarProducto = async (req: Request, res: Response) => {
+  try {
+    const { nombre, descripcion, precio, tipo } = req.body;
+    console.log('Datos recibidos:', req.body);
+    console.log('Archivo recibido:', req.file);
+
+    const nuevoProducto = await productoService.crearProducto({
+      nombre,
+      descripcion,
+      precio: parseFloat(precio),
+      tipo: parseInt(tipo),
+    });
+
+    if (req.file) {
+      const fs = require('fs');
+      const path = require('path');
+
+      const ext = path.extname(req.file.originalname);
+      const nuevoNombre = `${nuevoProducto.id}${ext}`;
+      const destino = path.join(__dirname, '../../front/src/assets/imagenes', nuevoNombre);
+console.log('Moviendo imagen a:', destino);
+      fs.renameSync(req.file.path, destino);
+    }
+
+    res.status(201).json(nuevoProducto);
+  } catch (error) {
+    console.error('Error al registrar producto:', error);
+    res.status(500).json({ message: 'Error interno del servidor' });
+  }
+};
 }

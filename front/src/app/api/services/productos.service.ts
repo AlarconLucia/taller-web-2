@@ -1,7 +1,7 @@
 // src/app/services/product.service.ts
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Producto } from './interfaces/productos.model';
 import { TipoProducto } from './interfaces/productos.model';
 import { environment } from '../../../environments/environment.development';
@@ -30,6 +30,10 @@ export class ProductoService {
 
   obtenerProductoPorId(id: number): Observable<Producto> {
     return this.http.get<Producto>(`${environment.api_url}/productos/ver-producto/${id}`)
+  }
+
+  registrarProducto(formData: FormData): Observable<Producto> {
+    return this.http.post<Producto>(`${environment.api_url}/productos/registro`, formData);
   }
 }
 

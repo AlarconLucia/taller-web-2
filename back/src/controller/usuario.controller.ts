@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { UsuarioRepository } from "../repository/usuario.repository";
 import { UsuarioService } from "../services/usuario.service";
 import jwt from "jsonwebtoken";
-import { usuario } from "../generated/prisma/index";
 
 const usuarioRepository = new UsuarioRepository();
 const usuarioService = new UsuarioService(usuarioRepository);
@@ -42,6 +41,7 @@ export class UsuarioController {
           id: usuario?.id,
           nombre: usuario?.nombre,
           email: usuario?.email,
+          tipo: usuario?.tipo,
         },
       });
     } catch (error) {
@@ -67,6 +67,7 @@ export class UsuarioController {
   };
 
   private generarToken(usuario: {
+    tipo?: string | null;
     id: number;
     email: string | null;
     nombre?: string | null;
@@ -76,6 +77,7 @@ export class UsuarioController {
         id: usuario.id,
         email: usuario.email,
         nombre: usuario.nombre,
+        tipo: usuario.tipo,
       },
       SECRET,
       {

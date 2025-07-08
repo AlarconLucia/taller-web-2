@@ -26,7 +26,7 @@ export class UsuarioRepository {
         if (this.emailYaUsado != null) {
             return prisma.usuario.findUnique({
                 where: { email: emailAVerificar, passw: passwordAVerificar },
-                select: { nombre: true, id: true, email: true }
+                select: { nombre: true, id: true, email: true, tipo:true }
             })
         }
     }
