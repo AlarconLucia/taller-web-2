@@ -44,7 +44,7 @@
           <div class="col-md-4" *ngFor="let producto of productos">
             <div class="card mb-4 product-wap rounded-0 h-100">
               <div class="card rounded-0">
-                <img class="card-img rounded-0 img-fluid" [src]="'assets/img/productos/' + producto.id + '.png'"
+                <img class="card-img rounded-0 img-fluid" [src]="'http://localhost:3000/img/productos/' + producto.id + '.png'"
                   [alt]="producto.nombre" />
               </div>
               <div class="card-body">

@@ -1,6 +1,8 @@
 import { Request, Response, Router } from "express";
 import { ProductoService } from "../services/producto.service";
 import { ProductoRepository } from "../repository/producto.repository";
+import { RequestConUsuario } from "../middlewares/auth.middleware";
+
 
 const productoRepository = new ProductoRepository();
 const productoService = new ProductoService(productoRepository);
@@ -48,7 +50,11 @@ export class ProductoController {
     }
   };
 
-  public registrarProducto = async (req: Request, res: Response) => {
+  public registrarProducto = async (req: RequestConUsuario, res: Response) => {
+    if (req.usuario?.tipo !== 'admin') {
+      return res.status(403).json({ message: 'Acceso denegado: Se requiere rol de administrador.' });
+    }
+
   try {
     const { nombre, descripcion, precio, tipo } = req.body;
     console.log('Datos recibidos:', req.body);
@@ -67,7 +73,7 @@ export class ProductoController {
 
       const ext = path.extname(req.file.originalname);
       const nuevoNombre = `${nuevoProducto.id}${ext}`;
-      const destino = path.join(__dirname, '../../front/src/assets/imagenes', nuevoNombre);
+      const destino = path.join(__dirname, `../../public/img/productos/${nuevoNombre}`);
 console.log('Moviendo imagen a:', destino);
       fs.renameSync(req.file.path, destino);
     }
