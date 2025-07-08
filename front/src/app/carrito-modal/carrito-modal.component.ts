@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
-import { CarritoService, CartItem } from '../services/carrito.service';
+import { CarritoService, CartItem } from '../api/services/carrito.service';
 
 @Component({
   selector: 'app-carrito-modal',

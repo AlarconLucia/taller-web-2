@@ -1,4 +1,3 @@
-import { producto } from './../../../../back/src/generated/prisma/index.d';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductoService } from '../api/services/productos.service';

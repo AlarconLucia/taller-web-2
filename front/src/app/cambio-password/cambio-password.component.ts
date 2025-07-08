@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { UsuarioService } from '../api/services/usuario/usuario.service';
+import { UsuarioService } from '../api/services/usuario.service';
 
 @Component({
   selector: 'app-cambio-password',

@@ -7,7 +7,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { UsuarioService } from '../api/services/usuario/usuario.service';
+import { UsuarioService } from '../api/services/usuario.service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 

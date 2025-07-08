@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UsuarioService } from '../api/services/usuario/usuario.service';
+import { UsuarioService } from '../api/services/usuario.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
