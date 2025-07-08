@@ -29,4 +29,21 @@ export class PedidoController {
       res.status(500).json({ message: "Error interno del servidor" });
     }
   };
+  
+   public obtenerHistorial = async (req: RequestConUsuario, res: Response): Promise<void> => {
+    const usuarioId = req.usuario?.id;
+
+    if (!usuarioId) {
+      res.status(401).json({ message: "No autorizado" });
+      return;
+    }
+
+    try {
+      const historial = await this.pedidoService.findByUsuarioId(usuarioId);
+      res.status(200).json(historial);
+    } catch (error) {
+      console.error("Error al obtener el historial de pedidos:", error);
+      res.status(500).json({ message: "Error interno del servidor" });
+    }
+  };
 }

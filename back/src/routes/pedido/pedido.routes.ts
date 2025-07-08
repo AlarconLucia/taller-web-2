@@ -11,3 +11,5 @@ const service = new PedidoService(repository);
 const pedidoController = new PedidoController(service);
 
 pedidoRouter.post('/', verificarTokenMiddleware, pedidoController.crearPedido);
+pedidoRouter.post('/', verificarTokenMiddleware, pedidoController.crearPedido);
+pedidoRouter.get('/historial', verificarTokenMiddleware, pedidoController.obtenerHistorial);

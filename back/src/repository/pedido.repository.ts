@@ -30,4 +30,22 @@ export class PedidoRepository {
       return orden;
     });
   }
+
+ async findByUsuarioId(usuarioId: number) {
+    return prisma.orden.findMany({
+      where: {
+        usuarioId: usuarioId,
+      },
+      include: {
+        detalles: {
+          include: {
+            producto: true,
+          },
+        },
+      },
+      orderBy: {
+        fecha: 'desc',
+      },
+    });
+  }
 }

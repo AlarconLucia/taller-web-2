@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-interface RequestConUsuario extends Request {
+export interface RequestConUsuario extends Request {
   usuario?: any;
 }
 

@@ -23,7 +23,6 @@ export class DetalleProductoComponent implements OnInit {
   mensajeError: string | null = null;
   private id: number = 0;
 
-  // 1. Añadimos una propiedad para guardar la cantidad. Inicia en 1.
   public cantidad: number = 1;
 
   ngOnInit(): void {
@@ -39,19 +38,16 @@ export class DetalleProductoComponent implements OnInit {
     })
   }
 
-  // 2. Método para aumentar la cantidad
   incrementarCantidad(): void {
     this.cantidad++;
   }
 
-  // 3. Método para disminuir la cantidad, con un límite de 1
   decrementarCantidad(): void {
     if (this.cantidad > 1) {
       this.cantidad--;
     }
   }
 
-  // 4. Modificamos este método para que use la cantidad seleccionada
   agregarAlCarrito(producto: Producto): void {
     this.carritoService.agregarAlCarrito(producto, this.cantidad);
     console.log(`${this.cantidad} x ${producto.nombre} agregado(s) al carrito.`);

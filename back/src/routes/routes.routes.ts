@@ -3,6 +3,8 @@ import { usuarioRouter } from "./usuario/usuario.routes";
 import { productoRouter } from "./producto/producto.routes";
 import { tipoProductoRouter } from "./producto/tipo-producto.routes";
 import { pedidoRouter } from './pedido/pedido.routes';
+import { favoritoRouter } from './producto/favorito.routes';
+
 
 export class AppRoutes {
   static get routes(): Router {
@@ -11,6 +13,8 @@ export class AppRoutes {
     router.use("/api/productos", productoRouter);
     router.use("/api/tipos-producto", tipoProductoRouter);
     router.use('/api/pedidos', pedidoRouter);
+    router.use('/api/favoritos', favoritoRouter);
+
     return router;
   }
 }

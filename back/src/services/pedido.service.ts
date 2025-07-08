@@ -34,4 +34,8 @@ export class PedidoService {
     
     return this.pedidoRepository.crearPedido(usuarioId, itemsConPrecio, total);
   }
+
+    async findByUsuarioId(usuarioId: number) {
+    return this.pedidoRepository.findByUsuarioId(usuarioId);
+  }
 }

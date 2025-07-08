@@ -21,4 +21,11 @@ export class PedidoService {
 
     return this.http.post(this.apiUrl, { items }, { headers });
   }
+   getHistorial(): Observable<any[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get<any[]>(`${this.apiUrl}/historial`, { headers });
+  }
+
 }

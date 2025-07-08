@@ -25,16 +25,12 @@
             <p class="text-muted">{{ producto.descripcion }}</p>
 
             <hr class="my-4">
-<!-- Cantidad y Botón de Agregar al Carrito -->
 <div class="row align-items-end">
   <div class="col-md-5">
     <h6 class="fw-bold mb-2">Cantidad</h6>
     <div class="input-group quantity-selector" style="max-width: 150px;">
-      <!-- Conectamos el botón de menos a decrementarCantidad() -->
       <button class="btn btn-outline-secondary" type="button" (click)="decrementarCantidad()">-</button>
-      <!-- El valor del input ahora está bindeado a la propiedad 'cantidad' -->
       <input type="text" class="form-control text-center" [value]="cantidad" readonly>
-      <!-- Conectamos el botón de más a incrementarCantidad() -->
       <button class="btn btn-outline-secondary" type="button" (click)="incrementarCantidad()">+</button>
     </div>
   </div>
