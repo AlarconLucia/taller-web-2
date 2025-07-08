@@ -66,9 +66,5 @@ INSERT INTO Producto (nombre, descripcion, precio, tipo) VALUES
     ('CoreTitan Shell', 'Armadura pectoral con núcleo de poder', 21000.00, 7);
   
   
-  
-  
-  
-  
-  
-  
+  INSERT INTO Usuario (nombre, apellido, email, passw, direccion, tipo) VALUES 
+	('Admin', 'NovaShop', 'admin@novashop.com', 'Admin1' 'Nueva York, calle 72', 'admin');
