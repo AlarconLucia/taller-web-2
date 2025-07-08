@@ -7,6 +7,8 @@ import { CambioPasswordComponent } from './cambio-password/cambio-password.compo
 import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
 import { authGuard } from './auth.guard';
 import { AdminComponent } from './admin/admin.component';
+import { PerfilComponent } from './perfil/perfil.component';
+
 
 export const routes: Routes = [
   {
@@ -46,5 +48,10 @@ export const routes: Routes = [
     path: 'inicio-admin',
     component: AdminComponent,
     canActivate: [authGuard],
+  },
+  {
+    path: 'perfil',
+    component: PerfilComponent,
+    canActivate: [authGuard]
   },
 ];

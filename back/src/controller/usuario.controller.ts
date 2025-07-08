@@ -56,7 +56,8 @@ export class UsuarioController {
       const usuario = await usuarioService.cambiarPassword(email, passwNueva);
 
       if (!usuario) {
-        return res.status(404).json({ mensaje: "El email no está registrado" });
+        res.status(404).json({ mensaje: "El email no está registrado" });
+        return;
       }
 
       res.status(200).json({ mensaje: "Contraseña cambiada correctamente" });

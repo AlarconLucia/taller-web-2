@@ -39,7 +39,7 @@
               <span *ngIf="total > 0" class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{{ total }}</span>
             </ng-container>
           </a>
-          <a class="nav-icon position-relative text-decoration-none" href="#" title="Mi perfil">
+          <a class="nav-icon position-relative text-decoration-none" routerLink="/perfil" title="Mi perfil">
             <i class="fa fa-fw fa-user text-dark mr-3"></i>
           </a>
           <a class="nav-icon position-relative text-decoration-none" href="#" title="Cerrar sesión" (click)="onClick()">

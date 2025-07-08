@@ -52,8 +52,7 @@
                   producto.nombre }}</a>
                 <p class="mb-0">{{ producto.precio | currency : "ARS" : "symbol-narrow" : "1.2-2" }}</p>
                 <div class="card-buttons">
-                  <a class="btn btn-outline-success" title="Agregar a favoritos"><i
-                      class="far fa-heart"></i></a>
+                <a class="btn btn-outline-success" (click)="agregarAFavoritos(producto.id)" title="Agregar a favoritos"><i class="far fa-heart"></i></a>
                   <a class="btn btn-outline-success" [routerLink]="['/ver-producto', producto.id]"
                     title="Ver detalle"><i class="far fa-eye"></i></a>
 
