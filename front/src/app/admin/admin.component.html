@@ -1,1 +1,58 @@
-<p>admin works!</p>
+<form [formGroup]="nuevoProducto()" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <label for="nombre">Nombre de la prenda</label>
+    <input type="text" name="nombre" id="nombre" formControlName="nombre" placeholder="Nombre del producto">
+    @if(nuevoProducto().get('nombre')?.hasError('required') && nuevoProducto().get('nombre')?.touched) {
+    <p class="text-danger">Este campo es requerido</p>
+    }
+    @if(nuevoProducto().get('nombre')?.hasError('minlength') && nuevoProducto().get('nombre')?.touched) {
+    <p class="text-danger">El nombre debe tener mínimo 3 caracteres</p>
+    }
+    @if(nuevoProducto().get('nombre')?.hasError('maxlength') && nuevoProducto().get('nombre')?.touched) {
+    <p class="text-danger">El nombre debe tener máximo 20 caracteres</p>
+    }
+    <br><br>
+
+    <label for="descripcion">Descripción</label>
+    <textarea name="descripcion" id="descripcion" formControlName="descripcion"
+        placeholder="Describí la prenda"></textarea>
+    @if(nuevoProducto().get('descripcion')?.hasError('required') && nuevoProducto().get('descripcion')?.touched) {
+    <p class="text-danger">Este campo es requerido</p>
+    }
+    @if(nuevoProducto().get('descripcion')?.hasError('minlength') && nuevoProducto().get('descripcion')?.touched) {
+    <p class="text-danger">El nombre debe tener mínimo 3 caracteres</p>
+    }
+    @if(nuevoProducto().get('descripcion')?.hasError('maxlength') && nuevoProducto().get('descripcion')?.touched) {
+    <p class="text-danger">El nombre debe tener máximo 20 caracteres</p>
+    }
+    <br><br>
+
+    <label for="precio">Precio</label>
+    <input type="number" name="precio" id="precio" value="0" formControlName="precio">
+    @if(nuevoProducto().get('precio')?.hasError('required') && nuevoProducto().get('precio')?.touched) {
+    <p class="text-danger">Este campo es requerido</p>
+    }
+    <br><br>
+
+    <label for="tipo">Tipo de prenda</label>
+    <select name="tipo" id="tipo" formControlName="tipo">
+        <option *ngFor="let tipo of tipos" [value]="tipo.id">{{ tipo.tipo }}</option>
+    </select>
+    @if(nuevoProducto().get('tipo')?.hasError('required') && nuevoProducto().get('tipo')?.touched) {
+    <p class="text-danger">Este campo es requerido</p>
+    }
+    <br><br>
+
+    <label for="imagen">Imagen del producto</label>
+    <input type="file" id="imagen" (change)="onFileChange($event)" accept="image/*" >
+    <br><br>
+
+    <input type="submit" id="save" value="Guardar" class="btn btn-success" [disabled]="nuevoProducto().invalid" />
+</form>
+
+<div *ngIf="mensajeError" class="alert alert-danger">
+            {{ mensajeError }}
+          </div>
+
+          <div *ngIf="mensajeExito" class="alert alert-success">
+            {{ mensajeExito }}
+          </div>

@@ -1,4 +1,5 @@
 import { ProductoRepository } from "../repository/producto.repository";
+import { producto } from '../generated/prisma/index';
 
 export class ProductoService {
   constructor(private productoRepository: ProductoRepository) {}
@@ -9,5 +10,9 @@ export class ProductoService {
 
     async obtenerProductoPorId(id: number) {
     return this.productoRepository.obtenerProductoporId(id);
+  }
+
+    crearProducto(producto: { nombre: string; descripcion: string; precio: number; tipo: number; }) {
+    return this.productoRepository.crearProducto(producto);
   }
 }

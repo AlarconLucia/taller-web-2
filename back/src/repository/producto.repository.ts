@@ -42,4 +42,10 @@ export class ProductoRepository {
       }
     })
   }
+
+  crearProducto(producto: { nombre: string; descripcion: string; precio: number; tipo: number; }) {
+    return prisma.producto.create({
+      data: producto,
+    });
+  }
 }
