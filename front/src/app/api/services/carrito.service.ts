@@ -36,14 +36,14 @@ export class CarritoService {
     }
   }
 
-  agregarAlCarrito(producto: Producto): void {
+    agregarAlCarrito(producto: Producto, cantidad: number = 1): void {
     const items = this._items$.getValue();
     const itemExistente = items.find(i => i.producto.id === producto.id);
 
     if (itemExistente) {
-      itemExistente.cantidad += 1;
+      itemExistente.cantidad += cantidad;
     } else {
-      items.push({ producto, cantidad: 1 });
+      items.push({ producto, cantidad: cantidad });
     }
 
     this._items$.next(items);
