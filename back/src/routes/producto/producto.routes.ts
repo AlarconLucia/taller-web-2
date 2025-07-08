@@ -8,3 +8,4 @@ productoRouter.get(
   "/",
   productoController.obtenerProductos.bind(productoController)
 );
+productoRouter.get("/ver-producto/:id", productoController.obtenerProductoPorId.bind(productoController));

@@ -9,7 +9,7 @@ const SECRET = "Alarcon-Vara";
 const router = Router();
 
 export class ProductoController {
-  constructor() {}
+  constructor() { }
 
   public obtenerProductos = async (req: Request, res: Response) => {
     const tipoProductoId = req.query.tipoProductoId as string | undefined;
@@ -25,6 +25,26 @@ export class ProductoController {
     } catch (error) {
        console.error("Error al obtener productos:", error);
       res.status(500).json({ message: "Error interno del servidor" });
+    }
+  };
+
+  public obtenerProductoPorId = async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+    if (isNaN(id)) {
+      res.status(400).json({ mensaje: "ID inválido" });
+    }
+
+    try {
+      const producto = await productoService.obtenerProductoPorId(id);
+      
+      if (!producto) {
+        res.status(404).json({ mensaje: "Producto no encontrado" });
+      }
+
+       res.status(200).json(producto);
+    } catch (error) {
+      console.error("Error al obtener producto:", error);
+      res.status(500).json({ mensaje: "Error interno del servidor" });
     }
   };
 }

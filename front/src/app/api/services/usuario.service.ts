@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Inject, inject, Injectable, PLATFORM_ID } from "@angular/core";
 import { UsuarioRest } from "./interfaces/usuario.interfaces.rest";
 import { map } from "rxjs";
-import { environment } from "../../../../environments/environment.development";
-import { Usuario } from "../../../modules/usuarios/interface/usuario.interface";
+import { environment } from "../../../environments/environment.development";
+import { Usuario } from "../../modules/usuarios/interface/usuario.interface";
 import { isPlatformBrowser } from "@angular/common";
 
 @Injectable({
@@ -59,7 +59,7 @@ export class UsuarioService {
     }
 
     cambiarPassword(email: string, passwNueva: string) {
-        return this.http.post<any>(`${environment.api_url}/usuario/cambiar-contrasena`, { email, passwNueva })
+        return this.http.post<UsuarioRest>(`${environment.api_url}/usuario/cambiar-contrasena`, { email, passwNueva })
             .pipe(
                 map((res) => {
                     return res

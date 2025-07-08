@@ -2,18 +2,18 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Producto } from '../productos/productos.model';
-import { TipoProducto } from '../productos/productos.model';
+import { Producto } from './interfaces/productos.model';
+import { TipoProducto } from './interfaces/productos.model';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductoService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/api/productos';
 
- getProducts(
-tipoProductoId?: number | null, sortBy?: string, sortOrder?: string, query?: string | null): Observable<Producto[]> {
+  getProducts(
+    tipoProductoId?: number | null, sortBy?: string, sortOrder?: string, query?: string | null): Observable<Producto[]> {
     let params = new HttpParams();
     if (tipoProductoId) {
       params = params.set('tipoProductoId', tipoProductoId.toString());
@@ -25,7 +25,11 @@ tipoProductoId?: number | null, sortBy?: string, sortOrder?: string, query?: str
     if (query) {
       params = params.set('q', query);
     }
-    return this.http.get<Producto[]>(this.apiUrl, { params });
+    return this.http.get<Producto[]>(`${environment.api_url}/productos/`, { params });
+  }
+
+  obtenerProductoPorId(id: number): Observable<Producto> {
+    return this.http.get<Producto>(`${environment.api_url}/productos/ver-producto/${id}`)
   }
 }
 
@@ -34,9 +38,8 @@ tipoProductoId?: number | null, sortBy?: string, sortOrder?: string, query?: str
 })
 export class TipoProductoService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/api/tipos-producto';
 
   getTiposProducto(): Observable<TipoProducto[]> {
-    return this.http.get<TipoProducto[]>(this.apiUrl);
+    return this.http.get<TipoProducto[]>(`${environment.api_url}/tipos-producto`);
   }
 }

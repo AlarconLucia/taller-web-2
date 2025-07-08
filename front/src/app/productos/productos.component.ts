@@ -1,11 +1,12 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Observable, BehaviorSubject, switchMap, combineLatest, debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { Producto, TipoProducto } from '../api/services/interfaces/productos.model';
+import { CarritoService } from '../api/services/carrito.service';
+import { ProductoService, TipoProductoService } from '../api/services/productos.service';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { Observable, BehaviorSubject, switchMap, combineLatest, tap } from 'rxjs';
-
-import { ProductoService, TipoProductoService } from '../services/productos.service';
-import { CarritoService } from '../services/carrito.service';
-import { Producto, TipoProducto } from './productos.model';
 
 // 1. Definimos la forma que tendrá nuestro estado guardado
 interface FiltrosEstado {
@@ -71,6 +72,12 @@ export class ProductosComponent {
   // Métodos para actualizar el estado (estos no cambian)
   aplicarFiltro(tipoId: number | null): void {
     this.filtro$.next(tipoId);
+  }
+
+  resetearFiltros(): void {
+    this.filtro$.next(null);
+    this.busqueda$.next(null);
+    this.orden$.next(null);
   }
 
   aplicarOrden(event: Event): void {
