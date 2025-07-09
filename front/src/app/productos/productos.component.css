@@ -1,19 +1,19 @@
-.card {
-  display: flex;
-  flex-direction: column;
-}
+  .card {
+    display: flex;
+    flex-direction: column;
+  }
 
-.card-body {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
 
-.card-buttons {
-  padding-top: 1rem;
-  text-align: center;
-}
+  .card-buttons {
+    padding-top: 1rem;
+    text-align: center;
+  }
 
-.card-buttons .btn {
-  margin: 0 5px;
-}
+  .card-buttons .btn {
+    margin: 0 5px;
+  }

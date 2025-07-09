@@ -14,6 +14,7 @@ export class ProductoController {
   constructor() { }
 
   public obtenerProductos = async (req: Request, res: Response) => {
+    const page = req.query.page ? parseInt(req.query.page as string, 10) : 1;
     const tipoProductoId = req.query.tipoProductoId as string | undefined;
     const sortBy = req.query.sortBy as string | undefined;
     const sortOrder = req.query.sortOrder as 'asc' | 'desc' | undefined;
@@ -22,7 +23,7 @@ export class ProductoController {
     const idAsNumber = tipoProductoId ? parseInt(tipoProductoId, 10) : undefined;
 
     try {
-      const products = await productoService.findAll(idAsNumber, sortBy, sortOrder, query);
+    const products = await productoService.findAll(idAsNumber, sortBy, sortOrder, query, page);
       res.status(200).json(products);
     } catch (error) {
        console.error("Error al obtener productos:", error);
@@ -52,7 +53,8 @@ export class ProductoController {
 
   public registrarProducto = async (req: RequestConUsuario, res: Response) => {
     if (req.usuario?.tipo !== 'admin') {
-      return res.status(403).json({ message: 'Acceso denegado: Se requiere rol de administrador.' });
+      res.status(403).json({ message: 'Acceso denegado: Se requiere rol de administrador.' });
+      return;
     }
 
   try {

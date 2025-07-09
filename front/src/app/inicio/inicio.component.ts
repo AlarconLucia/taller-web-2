@@ -1,10 +1,12 @@
 import {Component,Inject,PLATFORM_ID,CUSTOM_ELEMENTS_SCHEMA,} from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -36,9 +36,9 @@ export class AdminComponent {
         nonNullable: true,
         validators: [Validators.required, Validators.minLength(3), Validators.maxLength(50)],
       }),
-      precio: new FormControl(0, {
+       precio: new FormControl(0, {
         nonNullable: true,
-        validators: [Validators.required],
+        validators: [Validators.required, Validators.min(0)],
       }),
       tipo: new FormControl('', {
         nonNullable: true,
