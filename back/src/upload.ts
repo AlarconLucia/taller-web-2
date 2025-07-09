@@ -1,13 +1,14 @@
 import multer from 'multer';
 import path from 'path';
-
+import { v4 as uuidv4 } from 'uuid';
 
 const storage = multer.diskStorage({
   destination: function (_req, _file, cb) {
-    cb(null, path.join(__dirname, '../../front/src/assets/imagenes'));
+    cb(null, 'uploads/');
   },
   filename: function (_req, file, cb) {
-    cb(null, file.originalname);
+    const extension = path.extname(file.originalname);
+    cb(null, `${uuidv4()}${extension}`);
   },
 });
 
