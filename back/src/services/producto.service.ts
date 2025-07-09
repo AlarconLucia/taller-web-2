@@ -4,8 +4,9 @@ import { producto } from '../generated/prisma/index';
 export class ProductoService {
   constructor(private productoRepository: ProductoRepository) {}
 
- async findAll(tipoProductoId?: number, sortBy?: string, sortOrder?: 'asc' | 'desc', query?: string) {
-    return this.productoRepository.findAll(tipoProductoId, sortBy, sortOrder, query);
+ async findAll(tipoProductoId?: number, sortBy?: string, sortOrder?: 'asc' | 'desc', query?: string, page: number = 1,
+    limit: number = 9) {
+    return this.productoRepository.findAll(tipoProductoId, sortBy, sortOrder, query, page, limit);
   }
 
     async obtenerProductoPorId(id: number) {

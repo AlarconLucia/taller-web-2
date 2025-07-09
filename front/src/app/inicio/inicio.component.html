@@ -1,22 +1,8 @@
-<div
-  id="template-mo-zay-hero-carousel"
-  class="carousel slide"
-  data-bs-ride="carousel"
->
+<div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
   <ul class="carousel-indicators">
-    <li
-      data-bs-target="#template-mo-zay-hero-carousel"
-      data-bs-slide-to="0"
-      class="active"
-    ></li>
-    <li
-      data-bs-target="#template-mo-zay-hero-carousel"
-      data-bs-slide-to="1"
-    ></li>
-    <li
-      data-bs-target="#template-mo-zay-hero-carousel"
-      data-bs-slide-to="2"
-    ></li>
+    <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
+    <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
+    <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
   </ul>
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -24,15 +10,8 @@
         <div class="row p-5">
           <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
             <ng-container *ngIf="isBrowser">
-              <model-viewer
-                src="assets/img/banner_img_01.glb"
-                alt="Modelo 3D"
-                auto-rotate
-                camera-controls
-                disable-zoom
-                reveal="auto"
-                style="width: 100%; height: 400px"
-              >
+              <model-viewer src="assets/img/banner_img_01.glb" alt="Modelo 3D" auto-rotate camera-controls
+                disable-zoom reveal="auto" style="width: 100%; height: 400px">
               </model-viewer>
             </ng-container>
           </div>
@@ -52,7 +31,6 @@
                 <li>Reacción háptica programable</li>
                 <li>Diseño de autor inspirado en IA generativa</li>
               </ul>
-
               <b>Disponible solo por tiempo limitado.</b>
               <br />
               <i>No vendemos ropa. Vendemos evolución</i>
@@ -66,15 +44,8 @@
         <div class="row p-5">
           <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
             <ng-container *ngIf="isBrowser">
-              <model-viewer
-                src="assets/img/banner_img_02.glb"
-                alt="Modelo 3D"
-                auto-rotate
-                camera-controls
-                disable-zoom
-                reveal="auto"
-                style="width: 100%; height: 400px"
-              >
+              <model-viewer src="assets/img/banner_img_02.glb" alt="Modelo 3D" auto-rotate camera-controls
+                disable-zoom reveal="auto" style="width: 100%; height: 400px">
               </model-viewer>
             </ng-container>
           </div>
@@ -88,7 +59,6 @@
                 detalles visuales con retroiluminación LED que responden al
                 movimiento.
               </p>
-
               <ul>
                 <li>Tecnología térmica adaptativa</li>
                 <li>Paneles reflectantes con retroiluminación</li>
@@ -105,15 +75,8 @@
         <div class="row p-5">
           <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
             <ng-container *ngIf="isBrowser">
-              <model-viewer
-                src="assets/img/banner_img_03.glb"
-                alt="Modelo 3D"
-                auto-rotate
-                camera-controls
-                disable-zoom
-                reveal="auto"
-                style="width: 100%; height: 400px"
-              >
+              <model-viewer src="assets/img/banner_img_03.glb" alt="Modelo 3D" auto-rotate camera-controls
+                disable-zoom reveal="auto" style="width: 100%; height: 400px">
               </model-viewer>
             </ng-container>
           </div>
@@ -143,20 +106,12 @@
       </div>
     </div>
   </div>
-  <a
-    class="carousel-control-prev text-decoration-none w-auto ps-3"
-    href="#template-mo-zay-hero-carousel"
-    role="button"
-    data-bs-slide="prev"
-  >
+  <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel"
+    role="button" data-bs-slide="prev">
     <i class="fas fa-chevron-left"></i>
   </a>
-  <a
-    class="carousel-control-next text-decoration-none w-auto pe-3"
-    href="#template-mo-zay-hero-carousel"
-    role="button"
-    data-bs-slide="next"
-  >
+  <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel"
+    role="button" data-bs-slide="next">
     <i class="fas fa-chevron-right"></i>
   </a>
 </div>
@@ -174,31 +129,22 @@
   </div>
   <div class="row">
     <div class="col-12 col-md-4 p-5 mt-3">
-      <a href="#"
-        ><img
-          src="assets/img/category_img_01.jpg"
-          class="rounded-circle img-fluid border"
-      /></a>
+      <a routerLink="/productos"><img src="assets/img/category_img_01.jpg"
+          class="rounded-circle img-fluid border" /></a>
       <h5 class="text-center mt-3 mb-3">Indumentaria</h5>
-      <p class="text-center"><a class="btn btn-success">Ver colección</a></p>
+      <p class="text-center"><a class="btn btn-success" routerLink="/productos">Ver colección</a></p>
     </div>
     <div class="col-12 col-md-4 p-5 mt-3">
-      <a href="#"
-        ><img
-          src="assets/img/category_img_02.jpg"
-          class="rounded-circle img-fluid border"
-      /></a>
+      <a routerLink="/productos"><img src="assets/img/category_img_02.jpg"
+          class="rounded-circle img-fluid border" /></a>
       <h2 class="h5 text-center mt-3 mb-3">Calzado</h2>
-      <p class="text-center"><a class="btn btn-success">Ver colección</a></p>
+      <p class="text-center"><a class="btn btn-success" routerLink="/productos">Ver colección</a></p>
     </div>
     <div class="col-12 col-md-4 p-5 mt-3">
-      <a href="#"
-        ><img
-          src="assets/img/category_img_03.jpg"
-          class="rounded-circle img-fluid border"
-      /></a>
+      <a routerLink="/productos"><img src="assets/img/category_img_03.jpg"
+          class="rounded-circle img-fluid border" /></a>
       <h2 class="h5 text-center mt-3 mb-3">Accesorios</h2>
-      <p class="text-center"><a class="btn btn-success">Ver colección</a></p>
+      <p class="text-center"><a class="btn btn-success" routerLink="/productos">Ver colección</a></p>
     </div>
   </div>
 </section>
@@ -214,97 +160,55 @@
     <div class="row">
       <div class="col-12 col-md-4 mb-4">
         <div class="card h-100">
-          <a href="shop-single.html">
-            <img
-              src="assets/img/feature_prod_01.jpg"
-              class="card-img-top"
-              alt="..."
-            />
+          <a routerLink="/productos">
+            <img src="assets/img/feature_prod_01.jpg" class="card-img-top" alt="..." />
           </a>
           <div class="card-body">
             <ul class="list-unstyled d-flex justify-content-between">
-              <li>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-muted fa fa-star"></i>
-              </li>
-              <li class="text-muted text-right">$240.00</li>
+              <li class="text-muted text-right">$12,040.00</li>
             </ul>
-            <a href="shop-single.html" class="h2 text-decoration-none text-dark"
-              >Campera Neográfica</a
-            >
+            <a routerLink="/productos" class="h2 text-decoration-none text-dark">Campera Neográfica</a>
             <p class="card-text">
               Material de neopreno técnico con cortes angulares que evocan una
               estética cibernética. Una prenda funcional y vanguardista. Ideal
               para entornos urbanos e híbridos.
             </p>
-            <p class="text-muted">Reseñas (24)</p>
           </div>
         </div>
       </div>
       <div class="col-12 col-md-4 mb-4">
         <div class="card h-100">
-          <a href="shop-single.html">
-            <img
-              src="assets/img/feature_prod_02.jpg"
-              class="card-img-top"
-              alt="..."
-            />
+          <a routerLink="/productos">
+            <img src="assets/img/feature_prod_02.jpg" class="card-img-top" alt="..." />
           </a>
           <div class="card-body">
             <ul class="list-unstyled d-flex justify-content-between">
-              <li>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-              </li>
-              <li class="text-muted text-right">$360.00</li>
+              <li class="text-muted text-right">$9,360.00</li>
             </ul>
-            <a href="shop-single.html" class="h2 text-decoration-none text-dark"
-              >Visor Óptico Orbital V1</a
-            >
+            <a routerLink="/productos" class="h2 text-decoration-none text-dark">Visor Óptico Orbital V1</a>
             <p class="card-text">
               Diseño envolvente de inspiración interplanetaria, con lentes de
               alta refracción y marco flotante. Protección visual de última
               generación.
             </p>
-            <p class="text-muted">Reseñas (48)</p>
           </div>
         </div>
       </div>
       <div class="col-12 col-md-4 mb-4">
         <div class="card h-100">
-          <a href="shop-single.html">
-            <img
-              src="assets/img/feature_prod_03.jpg"
-              class="card-img-top"
-              alt="..."
-            />
+          <a routerLink="/productos">
+            <img src="assets/img/feature_prod_03.jpg" class="card-img-top" alt="..." />
           </a>
           <div class="card-body">
             <ul class="list-unstyled d-flex justify-content-between">
-              <li>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-                <i class="text-warning fa fa-star"></i>
-              </li>
-              <li class="text-muted text-right">$480.00</li>
+              <li class="text-muted text-right">$11,480.00</li>
             </ul>
-            <a href="shop-single.html" class="h2 text-decoration-none text-dark"
-              >Botas Quantum-Drive 3D</a
-            >
+            <a routerLink="/productos" class="h2 text-decoration-none text-dark">Botas Quantum-Drive 3D</a>
             <p class="card-text">
               Calzado impreso en 3D con tecnología de absorción cinética
               integrada. El equilibrio perfecto entre funcionalidad biomecánica
               y estética posthumana.
             </p>
-            <p class="text-muted">Reseñas (74)</p>
           </div>
         </div>
       </div>

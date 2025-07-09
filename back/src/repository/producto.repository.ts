@@ -1,33 +1,49 @@
 import { prisma } from "../prisma";
 
 export class ProductoRepository {
-  async findAll(tipoProductoId?: number, sortBy?: string, sortOrder?: 'asc' | 'desc', query?: string) {
-    const whereClause: any = {};
-
-    if (tipoProductoId) {
-      whereClause.tipo = tipoProductoId;
+  async findAll(
+    tipoProductoId?: number, 
+    sortBy?: string, 
+    sortOrder?: 'asc' | 'desc', 
+    query?: string,
+    page: number = 1,
+    limit: number = 9
+  ) {
+    const skip = (page - 1) * limit;
+    
+    const conditions = [];
+    if (tipoProductoId) { 
+      conditions.push({ tipo: tipoProductoId }); 
     }
-
-    if (query) {
-      whereClause.OR = [
-        { nombre: { contains: query } },
-        { descripcion: { contains: query } },
-      ];
+    if (query && query.trim() !== '') {
+      conditions.push({
+        OR: [
+          { nombre: { contains: query } },
+          { descripcion: { contains: query } },
+        ],
+      });
     }
+    const whereClause = conditions.length > 0 ? { AND: conditions } : {};
 
     const orderByClause: { [key: string]: 'asc' | 'desc' } = {};
-
-    if (sortBy && sortOrder) {
-      orderByClause[sortBy] = sortOrder;
+    if (sortBy && sortOrder) { 
+      orderByClause[sortBy] = sortOrder; 
     }
 
-    return prisma.producto.findMany({
-      where: whereClause,
-      orderBy: orderByClause,
-      include: {
-        tipo_producto: { select: { tipo: true } },
-      },
-    });
+    const [productos, total] = await prisma.$transaction([
+      prisma.producto.findMany({
+        where: whereClause,
+        orderBy: orderByClause,
+        skip: skip,
+        take: limit,
+        include: {
+          tipo_producto: { select: { tipo: true } },
+        },
+      }),
+      prisma.producto.count({ where: whereClause })
+    ]);
+
+    return { data: productos, total };
   }
 
   async obtenerProductoporId(idBuscado: number) {

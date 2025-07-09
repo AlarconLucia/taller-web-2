@@ -1,58 +1,71 @@
-<form [formGroup]="nuevoProducto()" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-    <label for="nombre">Nombre de la prenda</label>
-    <input type="text" name="nombre" id="nombre" formControlName="nombre" placeholder="Nombre del producto">
-    @if(nuevoProducto().get('nombre')?.hasError('required') && nuevoProducto().get('nombre')?.touched) {
-    <p class="text-danger">Este campo es requerido</p>
-    }
-    @if(nuevoProducto().get('nombre')?.hasError('minlength') && nuevoProducto().get('nombre')?.touched) {
-    <p class="text-danger">El nombre debe tener mínimo 3 caracteres</p>
-    }
-    @if(nuevoProducto().get('nombre')?.hasError('maxlength') && nuevoProducto().get('nombre')?.touched) {
-    <p class="text-danger">El nombre debe tener máximo 20 caracteres</p>
-    }
-    <br><br>
+<div class="form-wrapper">
 
-    <label for="descripcion">Descripción</label>
-    <textarea name="descripcion" id="descripcion" formControlName="descripcion"
-        placeholder="Describí la prenda"></textarea>
-    @if(nuevoProducto().get('descripcion')?.hasError('required') && nuevoProducto().get('descripcion')?.touched) {
-    <p class="text-danger">Este campo es requerido</p>
-    }
-    @if(nuevoProducto().get('descripcion')?.hasError('minlength') && nuevoProducto().get('descripcion')?.touched) {
-    <p class="text-danger">El nombre debe tener mínimo 3 caracteres</p>
-    }
-    @if(nuevoProducto().get('descripcion')?.hasError('maxlength') && nuevoProducto().get('descripcion')?.touched) {
-    <p class="text-danger">El nombre debe tener máximo 20 caracteres</p>
-    }
-    <br><br>
+  <div class="form-card">
+    <h2 class="mb-2 text-center">Agregar nuevo producto</h2>
+    <p class="text-muted mb-4 text-center">Completá los datos para añadir un ítem al catálogo.</p>
 
-    <label for="precio">Precio</label>
-    <input type="number" name="precio" id="precio" value="0" formControlName="precio">
-    @if(nuevoProducto().get('precio')?.hasError('required') && nuevoProducto().get('precio')?.touched) {
-    <p class="text-danger">Este campo es requerido</p>
-    }
-    <br><br>
+    <form [formGroup]="nuevoProducto()" (ngSubmit)="onSubmit()">
 
-    <label for="tipo">Tipo de prenda</label>
-    <select name="tipo" id="tipo" formControlName="tipo">
-        <option *ngFor="let tipo of tipos" [value]="tipo.id">{{ tipo.tipo }}</option>
-    </select>
-    @if(nuevoProducto().get('tipo')?.hasError('required') && nuevoProducto().get('tipo')?.touched) {
-    <p class="text-danger">Este campo es requerido</p>
-    }
-    <br><br>
-
-    <label for="imagen">Imagen del producto</label>
-    <input type="file" id="imagen" (change)="onFileChange($event)" accept="image/*" >
-    <br><br>
-
-    <input type="submit" id="save" value="Guardar" class="btn btn-success" [disabled]="nuevoProducto().invalid" />
-</form>
-
-<div *ngIf="mensajeError" class="alert alert-danger">
-            {{ mensajeError }}
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="nombre" class="form-label">Nombre de la prenda</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-tshirt"></i></span>
+            <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Ej: NeoSkin Tee">
           </div>
-
-          <div *ngIf="mensajeExito" class="alert alert-success">
-            {{ mensajeExito }}
+          @if(nuevoProducto().get('nombre')?.hasError('required') && nuevoProducto().get('nombre')?.touched) {
+            <div class="text-danger small mt-1">Este campo es requerido.</div>
+          }
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="precio" class="form-label">Precio</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+            <input type="number" class="form-control" id="precio" formControlName="precio">
           </div>
+          @if(nuevoProducto().get('precio')?.hasError('required') && nuevoProducto().get('precio')?.touched) {
+            <div class="text-danger small mt-1">Este campo es requerido.</div>
+          }
+          @if(nuevoProducto().get('precio')?.hasError('min') && nuevoProducto().get('precio')?.touched) {
+            <div class="text-danger small mt-1">El precio no puede ser negativo.</div>
+          }
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea class="form-control" id="descripcion" formControlName="descripcion" rows="3" placeholder="Una breve descripción del producto..."></textarea>
+        @if(nuevoProducto().get('descripcion')?.hasError('required') && nuevoProducto().get('descripcion')?.touched) {
+          <div class="text-danger small mt-1">Este campo es requerido.</div>
+        }
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="tipo" class="form-label">Tipo de prenda</label>
+          <select class="form-select" id="tipo" formControlName="tipo">
+            <option value="" disabled>Selecciona una categoría...</option>
+            <option *ngFor="let tipo of tipos" [value]="tipo.id">{{ tipo.tipo }}</option>
+          </select>
+           @if(nuevoProducto().get('tipo')?.hasError('required') && nuevoProducto().get('tipo')?.touched) {
+            <div class="text-danger small mt-1">Debes seleccionar un tipo.</div>
+          }
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="imagen" class="form-label">Imagen del producto</label>
+          <input class="form-control" type="file" id="imagen" (change)="onFileChange($event)" accept="image/*">
+        </div>
+      </div>
+
+      <div class="d-grid gap-2 mt-4">
+        <button type="submit" class="btn btn-primary-solid" [disabled]="nuevoProducto().invalid">
+          <i class="fas fa-save me-2"></i>Guardar Producto
+        </button>
+      </div>
+
+      <div *ngIf="mensajeError" class="alert alert-danger mt-3">{{ mensajeError }}</div>
+      <div *ngIf="mensajeExito" class="alert alert-success mt-3">{{ mensajeExito }}</div>
+
+    </form>
+  </div>
+</div>
